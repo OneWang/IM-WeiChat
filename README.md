@@ -6,3 +6,5 @@ libEaseMobClientSDKLite.a 不包含实时语音功能，libEaseMobClientSDK.a包
 将环信的 SDK 下载过后拖进项目工程的 lib 文件夹中即可使用;
 下载地址 http://www.easemob.com/download/im
 
+
+![image](https://github.com/ButBueatiful/dotvim/raw/master/screenshots/vim-screenshot.jpg)
