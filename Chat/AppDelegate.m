@@ -24,8 +24,8 @@
     NSLog(@"%@",NSHomeDirectory());
     
     // Override point for customization after application launch.
-    //registerSDKWithAppKey:注册的appKey，详细见下面注释。
-    //apnsCertName:推送证书名(不需要加后缀)，详细见下面注释。
+    //registerSDKWithAppKey:注册的appKey，开发者注册及管理后台。
+    //apnsCertName:推送证书名(不需要加后缀)，制作与上传推送证书。
 //    [[EaseMob sharedInstance] registerSDKWithAppKey:@"437512311#chat-wang" apnsCertName:nil];
     
     //1.初始化SDK,并隐藏环信SDK的日志输出
