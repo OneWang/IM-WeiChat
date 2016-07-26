@@ -9,12 +9,22 @@
 #import "ChatViewController.h"
 #import "ChatCell.h"
 #import "TimeCell.h"
+
+#import "EmojiView.h"
 #import "AudioPlayTool.h"
 #import "TimeTool.h"
+#import "UIView+Extension.h"
 
 #import "EMCDDeviceManager.h"
 
-@interface ChatViewController ()<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,EMChatManagerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface ChatViewController ()<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,EMChatManagerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,EmotionViewdelegate>
+
+/** emoji 键盘 */
+@property (strong, nonatomic) EmojiView *emoji;
+
+/** 键盘高度 */
+@property(assign,nonatomic)CGFloat keyBoardH;
+
 /** 输入工具条底部的约束 */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *inputToolBarBottomConstraint;
 /** tableView */
@@ -24,6 +34,8 @@
 
 /** 计算cell高度的工具类 */
 @property (strong, nonatomic) ChatCell *cellTool;
+/** emoji 按钮 */
+@property (weak, nonatomic) IBOutlet UIButton *emojiBtn;
 
 /** intputToolBar的高度的约束 */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *inputToolBarConstraint;
@@ -39,6 +51,16 @@
 @end
 
 @implementation ChatViewController
+- (EmojiView *)emoji
+{
+    if (!_emoji) {
+        _emoji = [[EmojiView alloc] initWithFrame:emotionDownFrame];
+        _emoji.IputView = self.textView;
+        _emoji.delegate = self;
+        [self.view addSubview:_emoji];
+    }
+    return _emoji;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -354,6 +376,28 @@
     imgPicker.delegate = self;
     [self presentViewController:imgPicker animated:YES completion:NULL];
 }
+#pragma mark 表情键盘
+- (IBAction)ButtonClickEmoj:(UIButton *)emotionBtn {
+    if (emotionBtn.selected) {
+        emotionBtn.selected = NO;
+        [self.textView becomeFirstResponder];
+        self.tableView.height = screenH - self.keyBoardH - self.inputToolBarConstraint.constant - 64;
+    }else
+    {
+        [self.textView resignFirstResponder];
+        emotionBtn.selected = YES;
+        [UIView animateWithDuration:emotionTipTime animations:^{
+            self.emoji.frame = emotionUpFrame;
+//            self.toolBarView.frame = CGRectMake(0, screenH - self.inputToolBarConstraint.constant - self.emoji.height, screenW, self.inputToolBarConstraint.constant);
+            self.tableView.height = screenH - self.emoji.height - self.inputToolBarConstraint.constant - 64;
+            if (self.tableView.contentSize.height > self.tableView.height) {
+                [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentSize.height - self.tableView.bounds.size.height + 3) animated:NO];
+            }
+        }];
+    }
+}
+
+
 #pragma mark 用户选中图片的回调
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
@@ -370,6 +414,9 @@
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     [AudioPlayTool stop];
+    [UIView animateWithDuration:.2 animations:^{
+        self.emoji.frame = CGRectMake(0, screenH, screenW, 0);
+    }];
 }
 
 //往数据源数组中添加元素

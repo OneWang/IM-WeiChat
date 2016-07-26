@@ -65,7 +65,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="bFE-k4-z2C"/>
+                    <navigationItem key="navigationItem" title="会话" id="bFE-k4-z2C"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </tableViewController>
@@ -114,7 +114,7 @@
         <scene sceneID="PDj-Vs-Axg">
             <objects>
                 <navigationController id="Am3-Ty-65r" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Conversation" id="pkP-Z1-50G"/>
+                    <tabBarItem key="tabBarItem" title="Conversation" image="tabbar_chats" id="pkP-Z1-50G"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="WFK-0A-QdQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -154,7 +154,7 @@
                             <outlet property="delegate" destination="Tcl-0k-pGu" id="rLZ-HZ-RJ1"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="YRv-2k-pRY">
+                    <navigationItem key="navigationItem" title="通讯录" id="YRv-2k-pRY">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="MAr-b6-xhh">
                             <connections>
                                 <segue destination="rmt-N5-Mzq" kind="push" id="OX4-ss-Ju4"/>
@@ -189,6 +189,9 @@
                                             <constraint firstAttribute="width" constant="30" id="l7j-St-DEj"/>
                                         </constraints>
                                         <state key="normal" image="chatBar_face"/>
+                                        <connections>
+                                            <action selector="ButtonClickEmoj:" destination="IPp-RS-jcp" eventType="touchUpInside" id="ZZX-ke-wNA"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wdk-Jo-9Is" userLabel="more">
                                         <rect key="frame" x="337" y="8" width="30" height="30"/>
@@ -399,6 +402,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="emojiBtn" destination="tUQ-UT-MYw" id="tz2-tb-s8j"/>
                         <outlet property="inputToolBarBottomConstraint" destination="snB-zu-bjY" id="74J-Ds-URg"/>
                         <outlet property="inputToolBarConstraint" destination="ged-R0-5z0" id="4nW-1R-k50"/>
                         <outlet property="recordBtn" destination="KPI-oO-zb1" id="Q8A-Dp-e9t"/>
@@ -408,13 +412,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iAb-Jw-iIm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1038.5" y="235.5"/>
+            <point key="canvasLocation" x="1016.5" y="208.5"/>
         </scene>
-        <!--AddressBookNav-->
+        <!--AddressBook-->
         <scene sceneID="A6x-cf-xxW">
             <objects>
                 <navigationController id="M4h-UE-wDd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="AddressBookNav" id="qtp-rx-zwr"/>
+                    <tabBarItem key="tabBarItem" title="AddressBook" image="tabbar_contacts" id="qtp-rx-zwr"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="X2j-R0-yk3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -473,7 +477,7 @@
                             <outlet property="delegate" destination="wCL-m3-pfB" id="rP7-rM-aVl"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="O2G-ab-QMA"/>
+                    <navigationItem key="navigationItem" title="设置界面" id="O2G-ab-QMA"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="logoutBtn" destination="Uuh-Xc-Yfp" id="Db4-NB-5xD"/>
@@ -487,7 +491,7 @@
         <scene sceneID="InE-aJ-VGZ">
             <objects>
                 <navigationController id="PBx-v0-IEh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="SettingNav" id="nZP-3h-ZtY"/>
+                    <tabBarItem key="tabBarItem" title="SettingNav" image="tabbar_setting" id="nZP-3h-ZtY"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aFn-b4-sey">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -511,5 +515,8 @@
         <image name="chatListCellHead" width="51" height="51"/>
         <image name="chat_receiver_bg" width="40" height="40"/>
         <image name="chat_sender_bg" width="40" height="40"/>
+        <image name="tabbar_chats" width="20" height="18"/>
+        <image name="tabbar_contacts" width="20" height="18"/>
+        <image name="tabbar_setting" width="20" height="20"/>
     </resources>
 </document>
