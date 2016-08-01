@@ -14,11 +14,13 @@
 #import "AudioPlayTool.h"
 #import "TimeTool.h"
 #import "UIView+Extension.h"
+#import "FunctionView.h"
+#import "UIViewExt.h"
 
 #import "EMCDDeviceManager.h"
 
 @interface ChatViewController ()<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,EMChatManagerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,EmotionViewdelegate>
-
+@property (strong, nonatomic) NSString * name;
 /** emoji 键盘 */
 @property (strong, nonatomic) EmojiView *emoji;
 
@@ -36,6 +38,9 @@
 @property (strong, nonatomic) ChatCell *cellTool;
 /** emoji 按钮 */
 @property (weak, nonatomic) IBOutlet UIButton *emojiBtn;
+
+/** 更多功能所显示的 view */
+@property (weak, nonatomic) FunctionView *functionView;
 
 /** intputToolBar的高度的约束 */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *inputToolBarConstraint;
@@ -84,6 +89,44 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kbWillShow:) name:UIKeyboardWillShowNotification object:nil];
     //2.监听键盘的退出事件
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kbWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+/** 添加更多的功能 */
+- (void)addMoreFunctionView{
+    // 添加更多功能
+     FunctionView *functionView = [[FunctionView alloc]initWithImageBlock:^{
+        NSLog(@"点击了图片按钮");
+         //将更多面板移除
+         [self.functionView removeFromSuperview];
+        // 跳转到图片选择器
+        UIImagePickerController *picker = [[UIImagePickerController alloc]init];
+        picker.delegate = self;
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentViewController:picker animated:YES completion:nil];
+    } callBtnBlock:^{
+        NSLog(@"点击了电话按钮");
+        //将更多面板移除
+        [self.functionView removeFromSuperview];
+        // 电话聊天
+        [[EaseMob sharedInstance].callManager asyncMakeVoiceCall:self.buddy.username timeout:50 error:nil];
+    } videoBlock:^{
+        NSLog(@"点击了视频按钮");
+        //将更多面板移除
+        [self.functionView removeFromSuperview];
+        [[EaseMob sharedInstance].callManager asyncMakeVideoCall:self.buddy.username timeout:50 error:nil];
+    }];
+    functionView.frame = CGRectMake(0, screenH, screenW, 200);
+    [[UIApplication sharedApplication].keyWindow addSubview:functionView];
+    self.functionView = functionView;
+    
+    if (self.textView.isFirstResponder) {
+        [self.textView resignFirstResponder];
+        functionView.top = screenH - 200;
+        self.tableView.frame = CGRectMake(0, 0, screenW, screenH - 200);
+    }else{
+//        self.tableView.top = (functionView.top > screenH - 1)? - 200:0;
+        functionView.top = (functionView.top > screenH - 1)?screenH - 200:screenH;
+    }
 }
 
 - (void)loadLocalChatRecords{
@@ -146,6 +189,7 @@
     //判断数据源类型
     if ([self.dataArray[indexPath.row] isKindOfClass:[NSString class]]) {//时间的cell
         TimeCell *time = [tableView dequeueReusableCellWithIdentifier:timeCell];
+        time.selectionStyle = UITableViewCellSelectionStyleNone;
         time.timeLabel.text = self.dataArray[indexPath.row];
         return time;
     }
@@ -369,12 +413,14 @@
 #pragma mark 显示图片选择器
 - (IBAction)showImagePicker:(id)sender {
     //显示图片选择的控制器
-    UIImagePickerController *imgPicker = [[UIImagePickerController alloc] init];
+//    UIImagePickerController *imgPicker = [[UIImagePickerController alloc] init];
     
     //设置源
-    imgPicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    imgPicker.delegate = self;
-    [self presentViewController:imgPicker animated:YES completion:NULL];
+//    imgPicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+//    imgPicker.delegate = self;
+//    [self presentViewController:imgPicker animated:YES completion:NULL];
+    NSLog(@"添加更多功能按钮");
+    [self addMoreFunctionView];
 }
 #pragma mark 表情键盘
 - (IBAction)ButtonClickEmoj:(UIButton *)emotionBtn {
@@ -416,7 +462,9 @@
     [AudioPlayTool stop];
     [UIView animateWithDuration:.2 animations:^{
         self.emoji.frame = CGRectMake(0, screenH, screenW, 0);
+        self.tableView.height = screenH - self.inputToolBarConstraint.constant - 64;
     }];
+    [self.functionView removeFromSuperview];
 }
 
 //往数据源数组中添加元素
