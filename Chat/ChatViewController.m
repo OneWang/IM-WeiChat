@@ -18,8 +18,9 @@
 #import "UIViewExt.h"
 
 #import "EMCDDeviceManager.h"
+#import "PhotoContainerView.h"
 
-@interface ChatViewController ()<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,EMChatManagerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,EmotionViewdelegate>
+@interface ChatViewController ()<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,EMChatManagerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,EmotionViewdelegate,ChatCellDelegate>
 @property (strong, nonatomic) NSString * name;
 /** emoji 键盘 */
 @property (strong, nonatomic) EmojiView *emoji;
@@ -53,9 +54,22 @@
 
 /** 当前的会话对象 */
 @property (strong, nonatomic) EMConversation *conversation;
+
+/// 消息模型
+@property (strong, nonatomic)  EMMessage *imageMessage;
+
+/// 图片浏览器
+@property (strong, nonatomic)  PhotoContainerView *photoContainer;
 @end
 
 @implementation ChatViewController
+- (PhotoContainerView *)photoContainer{
+    if (!_photoContainer) {
+        _photoContainer = [[PhotoContainerView alloc] init];
+    }
+    return _photoContainer;
+}
+
 - (EmojiView *)emoji
 {
     if (!_emoji) {
@@ -202,6 +216,7 @@
         cell = [tableView dequeueReusableCellWithIdentifier:SendCell];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    cell.delegate = self;
     cell.message = message;
     return cell;
 }
@@ -222,6 +237,30 @@
     
     return [self.cellTool cellHeight];
 }
+
+#pragma mark - 
+#pragma mark - ChatCellDelegate
+//- (void)chatCellShowImageWithMessage:(EMMessage *)msg
+//{
+//    self.imageMessage = msg;
+//    
+//    EMImageMessageBody *body = self.imageMessage.messageBodies[0];
+//    // 预览图片的路径
+//    NSString *imgPath = body.localPath;
+//    // 判断本地图片是否存在
+//    NSFileManager *file = [NSFileManager defaultManager];
+//    // 使用SDWebImage设置图片
+//    NSURL *url = nil;
+//    if ([file fileExistsAtPath:imgPath]) {
+//        self.photoContainer.picPathStringsArray = @[imgPath];
+//    }else{
+//        url = [NSURL URLWithString:body.remotePath];
+//        NSString *path = url.absoluteString;
+//        self.photoContainer.picPathStringsArray = @[path];
+//        
+//    }
+//    
+//}
 
 #pragma mark UITextViewDelegate
 - (void)textViewDidChange:(UITextView *)textView

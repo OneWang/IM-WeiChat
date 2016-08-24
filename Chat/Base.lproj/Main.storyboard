@@ -18,12 +18,13 @@
                     <connections>
                         <segue destination="Am3-Ty-65r" kind="relationship" relationship="viewControllers" id="kWS-tH-XGm"/>
                         <segue destination="M4h-UE-wDd" kind="relationship" relationship="viewControllers" id="36W-Wa-K7E"/>
+                        <segue destination="dgA-Ei-QHL" kind="relationship" relationship="viewControllers" id="Kzq-Ma-OfI"/>
                         <segue destination="PBx-v0-IEh" kind="relationship" relationship="viewControllers" id="rRU-y6-AYV"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Pi-ob-C9U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-977.5" y="-257.5"/>
+            <point key="canvasLocation" x="-917.5" y="-265.5"/>
         </scene>
         <!--Conversation-->
         <scene sceneID="n1S-lC-xZz">
@@ -108,13 +109,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Id3-uH-c9t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1133.5" y="-727.5"/>
+            <point key="canvasLocation" x="929.5" y="-695.5"/>
         </scene>
         <!--Conversation-->
         <scene sceneID="PDj-Vs-Axg">
             <objects>
                 <navigationController id="Am3-Ty-65r" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Conversation" image="tabbar_chats" id="pkP-Z1-50G"/>
+                    <tabBarItem key="tabBarItem" title="Conversation" image="tabbar_mainframe" id="pkP-Z1-50G"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="WFK-0A-QdQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -165,7 +166,53 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="91w-uP-kMm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="359.5" y="-102.5"/>
+            <point key="canvasLocation" x="215.5" y="-212.5"/>
+        </scene>
+        <!--Root View Controller-->
+        <scene sceneID="kAI-lI-TGU">
+            <objects>
+                <tableViewController id="0ga-Ot-2vq" customClass="DiscoverViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="jry-1b-v77">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ZGi-0U-OVp">
+                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZGi-0U-OVp" id="P3t-rx-saY">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="0ga-Ot-2vq" id="l3y-cu-7ii"/>
+                            <outlet property="delegate" destination="0ga-Ot-2vq" id="u9A-Tj-yZs"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="8Zd-NI-caw"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TNa-kf-eLO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="147.5" y="504.5"/>
+        </scene>
+        <!--Discover-->
+        <scene sceneID="SdW-j6-ce1">
+            <objects>
+                <navigationController id="dgA-Ei-QHL" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Discover" image="tabbar_discover" id="eoe-bY-d1h"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5mA-rl-rzi">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="0ga-Ot-2vq" kind="relationship" relationship="rootViewController" id="cs6-T6-smB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ORT-qI-nF0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-455.5" y="576.5"/>
         </scene>
         <!--聊天界面-->
         <scene sceneID="d7K-Gp-Cb5">
@@ -287,7 +334,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chat_receiver_bg" translatesAutoresizingMaskIntoConstraints="NO" id="lWF-he-exc">
-                                                    <rect key="frame" x="40" y="5" width="72" height="40.5"/>
+                                                    <rect key="frame" x="40" y="5" width="67" height="40.5"/>
                                                     <rect key="contentStretch" x="0.5" y="0.69999999999999996" width="0.0" height="0.0"/>
                                                 </imageView>
                                                 <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="1HU-BE-HA3">
@@ -306,7 +353,7 @@
                                                 <constraint firstItem="1HU-BE-HA3" firstAttribute="bottom" secondItem="lWF-he-exc" secondAttribute="bottom" constant="-10" id="cul-v0-mIk"/>
                                                 <constraint firstItem="1HU-BE-HA3" firstAttribute="leading" secondItem="s3n-nQ-cmR" secondAttribute="trailing" constant="20" id="iUD-LG-cff"/>
                                                 <constraint firstItem="s3n-nQ-cmR" firstAttribute="leading" secondItem="V8Z-pn-PNn" secondAttribute="leading" constant="5" id="nK0-Yj-drA"/>
-                                                <constraint firstItem="1HU-BE-HA3" firstAttribute="trailing" secondItem="lWF-he-exc" secondAttribute="trailing" constant="-15" id="zc6-hA-UQg"/>
+                                                <constraint firstItem="1HU-BE-HA3" firstAttribute="trailing" secondItem="lWF-he-exc" secondAttribute="trailing" constant="-10" id="zc6-hA-UQg"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -329,7 +376,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chat_sender_bg" translatesAutoresizingMaskIntoConstraints="NO" id="B0j-Hb-h0V">
-                                                    <rect key="frame" x="263" y="5" width="72" height="41"/>
+                                                    <rect key="frame" x="268" y="5" width="67" height="41"/>
                                                     <rect key="contentStretch" x="0.5" y="0.69999999999999996" width="0.0" height="0.0"/>
                                                 </imageView>
                                                 <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="pD0-XA-aKV">
@@ -343,7 +390,7 @@
                                             <constraints>
                                                 <constraint firstItem="pD0-XA-aKV" firstAttribute="top" secondItem="B0j-Hb-h0V" secondAttribute="top" constant="10" id="2xC-KR-mbC"/>
                                                 <constraint firstItem="pD0-XA-aKV" firstAttribute="bottom" secondItem="B0j-Hb-h0V" secondAttribute="bottom" constant="-10" id="5oY-2a-if2"/>
-                                                <constraint firstItem="pD0-XA-aKV" firstAttribute="leading" secondItem="B0j-Hb-h0V" secondAttribute="leading" constant="15" id="8kg-BE-bt0"/>
+                                                <constraint firstItem="pD0-XA-aKV" firstAttribute="leading" secondItem="B0j-Hb-h0V" secondAttribute="leading" constant="10" id="8kg-BE-bt0"/>
                                                 <constraint firstItem="GS1-ZG-jUU" firstAttribute="top" secondItem="Gkr-f1-AxW" secondAttribute="top" constant="5" id="J2W-t1-qxY"/>
                                                 <constraint firstItem="pD0-XA-aKV" firstAttribute="top" secondItem="Gkr-f1-AxW" secondAttribute="top" constant="15" id="Ohj-Zy-bTc"/>
                                                 <constraint firstAttribute="trailing" secondItem="GS1-ZG-jUU" secondAttribute="trailing" constant="5" id="T4f-3W-LCV"/>
@@ -412,13 +459,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iAb-Jw-iIm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1016.5" y="208.5"/>
+            <point key="canvasLocation" x="956.5" y="12.5"/>
         </scene>
         <!--AddressBook-->
         <scene sceneID="A6x-cf-xxW">
             <objects>
                 <navigationController id="M4h-UE-wDd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="AddressBook" image="tabbar_contacts" id="qtp-rx-zwr"/>
+                    <tabBarItem key="tabBarItem" title="AddressBook" image="tabbar_contacts-1" id="qtp-rx-zwr"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="X2j-R0-yk3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -430,7 +477,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wsG-dG-QJ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-147.5" y="-72.5"/>
+            <point key="canvasLocation" x="-311.5" y="-212.5"/>
         </scene>
         <!--Setting-->
         <scene sceneID="OsU-qU-IR1">
@@ -485,13 +532,13 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H1M-WE-gbM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="51.5" y="1013.5"/>
+            <point key="canvasLocation" x="147.5" y="1489.5"/>
         </scene>
-        <!--SettingNav-->
+        <!--Me-->
         <scene sceneID="InE-aJ-VGZ">
             <objects>
                 <navigationController id="PBx-v0-IEh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="SettingNav" image="tabbar_setting" id="nZP-3h-ZtY"/>
+                    <tabBarItem key="tabBarItem" title="Me" image="tabbar_me" id="nZP-3h-ZtY"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aFn-b4-sey">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -503,7 +550,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q1p-a2-Phj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-452.5" y="988.5"/>
+            <point key="canvasLocation" x="-560.5" y="1272.5"/>
         </scene>
     </scenes>
     <resources>
@@ -515,8 +562,9 @@
         <image name="chatListCellHead" width="51" height="51"/>
         <image name="chat_receiver_bg" width="40" height="40"/>
         <image name="chat_sender_bg" width="40" height="40"/>
-        <image name="tabbar_chats" width="20" height="18"/>
-        <image name="tabbar_contacts" width="20" height="18"/>
-        <image name="tabbar_setting" width="20" height="20"/>
+        <image name="tabbar_contacts-1" width="27" height="23"/>
+        <image name="tabbar_discover" width="23" height="23"/>
+        <image name="tabbar_mainframe" width="25" height="23"/>
+        <image name="tabbar_me" width="23" height="23"/>
     </resources>
 </document>

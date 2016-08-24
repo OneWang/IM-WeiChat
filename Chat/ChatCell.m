@@ -11,10 +11,17 @@
 #import "AudioPlayTool.h"
 #import "UIImageView+WebCache.h"
 
+#import "PhotoContainerView.h"
+#import "Masonry.h"
+
+
 @interface ChatCell ()
 
 /** 聊天的图片控件 */
 @property (strong, nonatomic) UIImageView *chatImgView;
+
+/// 显示图片的 view
+@property (strong, nonatomic) PhotoContainerView *photoView;
 
 @end
 
@@ -30,6 +37,15 @@
     return _chatImgView;
 }
 
+- (PhotoContainerView *)photoView
+{
+    if (!_photoView) {
+        _photoView = [[PhotoContainerView alloc] init];
+        _photoView.backgroundColor = [UIColor redColor];
+    }
+    return _photoView;
+}
+
 - (void)awakeFromNib
 {
     //在此方法做些初始化的操作
@@ -41,7 +57,8 @@
 
 #pragma mark messageLabel点击事件
 - (void)messageLabelTap:(UITapGestureRecognizer *)recognizer{
-    NSLog(@"%s",__func__);
+    
+    NSLog(@"ChatCell======%s",__func__);
     //只有当前的类型为语音的时候才播放
     id body = self.message.messageBodies[0];
     if ([body isKindOfClass:[EMVoiceMessageBody class]]) {
@@ -62,7 +79,8 @@
 {
     
     //重用时把聊天图片控件移除
-    [self.chatImgView removeFromSuperview];
+//    [self.chatImgView removeFromSuperview];
+    [self.photoView removeFromSuperview];
     
     _message = message;
     
@@ -92,20 +110,34 @@
     self.messageLabel.attributedText = imgAtt;
     
     //在cell里面添加一个UIImageView
-    [self.messageLabel addSubview:self.chatImgView];
-    //设置图片控件为缩略图的
+    [self.messageLabel addSubview:self.photoView];
+//    [self.messageLabel addSubview:self.chatImgView];
     
-    self.chatImgView.frame = thumbnailFrame;
+    NSLog(@"%@",NSStringFromCGRect(thumbnailFrame));
+    //设置图片控件为缩略图的
+//    self.photoView.frame = thumbnailFrame;
+    self.messageLabel.backgroundColor = [UIColor blueColor];
+//    self.chatImgView.frame = thumbnailFrame;
+    [self.photoView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.messageLabel);
+        make.edges.equalTo(@0);
+    }];
     
     //下载图片
     //如果本地的图片存在直接显示本地,如果本地图片不存在就加载网络服务器上的图片
     NSFileManager *manager = [NSFileManager defaultManager];
     if ([manager fileExistsAtPath:imgBody.thumbnailLocalPath]) {
-        [self.chatImgView sd_setImageWithURL:[NSURL fileURLWithPath:imgBody.thumbnailLocalPath] placeholderImage:[UIImage imageNamed:@"defult"]];
+//        NSLog(@"图片本地路径%@",imgBody.thumbnailLocalPath);
+        self.photoView.picPathStringsArray = @[imgBody.localPath];
+//        [self.chatImgView sd_setImageWithURL:[NSURL fileURLWithPath:imgBody.thumbnailLocalPath] placeholderImage:[UIImage imageNamed:@"defult"]];
     }else{
-        [self.chatImgView sd_setImageWithURL:[NSURL URLWithString:imgBody.thumbnailRemotePath] placeholderImage:[UIImage imageNamed:@"defult"]];
+//        NSLog(@"图片远程路径%@",imgBody.thumbnailRemotePath);
+        self.photoView.picPathStringsArray = @[imgBody.remotePath];
+//        [self.chatImgView sd_setImageWithURL:[NSURL URLWithString:imgBody.thumbnailRemotePath] placeholderImage:[UIImage imageNamed:@"defult"]];
     }
+
 }
+
 
 #pragma mark 返回语音的富文本
 - (NSAttributedString *)voiceAttributed{
