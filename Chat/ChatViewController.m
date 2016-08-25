@@ -94,7 +94,7 @@
     self.cellTool = [self.tableView dequeueReusableCellWithIdentifier:ReceiveCell];
     
     //显示好友的名字
-    self.title = self.buddy.username;
+    self.title = self.friendName;
     
     //设置聊天管理器的代理
     [[EaseMob sharedInstance].chatManager addDelegate:self delegateQueue:nil];
@@ -122,12 +122,12 @@
         //将更多面板移除
         [self.functionView removeFromSuperview];
         // 电话聊天
-        [[EaseMob sharedInstance].callManager asyncMakeVoiceCall:self.buddy.username timeout:50 error:nil];
+        [[EaseMob sharedInstance].callManager asyncMakeVoiceCall:self.friendName timeout:50 error:nil];
     } videoBlock:^{
         NSLog(@"点击了视频按钮");
         //将更多面板移除
         [self.functionView removeFromSuperview];
-        [[EaseMob sharedInstance].callManager asyncMakeVideoCall:self.buddy.username timeout:50 error:nil];
+        [[EaseMob sharedInstance].callManager asyncMakeVideoCall:self.friendName timeout:50 error:nil];
     }];
     functionView.frame = CGRectMake(0, screenH, screenW, 200);
     [[UIApplication sharedApplication].keyWindow addSubview:functionView];
@@ -146,7 +146,7 @@
 - (void)loadLocalChatRecords{
     
     //获取本地聊天记录使用,会话对象
-    EMConversation *conversation = [[EaseMob sharedInstance].chatManager conversationForChatter:self.buddy.username conversationType:eConversationTypeChat];
+    EMConversation *conversation = [[EaseMob sharedInstance].chatManager conversationForChatter:self.friendName conversationType:eConversationTypeChat];
     
     self.conversation = conversation;
     
@@ -210,7 +210,7 @@
     ChatCell *cell = nil;
     //先获取消息模型
     EMMessage * message = self.dataArray[indexPath.row];
-    if ([message.from isEqualToString:self.buddy.username]) {//接受方
+    if ([message.from isEqualToString:self.friendName]) {//接受方
         cell = [tableView dequeueReusableCellWithIdentifier:ReceiveCell];
     }else{//发送方
         cell = [tableView dequeueReusableCellWithIdentifier:SendCell];
@@ -316,7 +316,7 @@
 //    EMImageMessageBody
 //    EMVideoMessageBody
     
-    NSLog(@"要发送给谁的:%@",self.buddy.username);
+    NSLog(@"要发送给谁的:%@",self.friendName);
     
     //创建一个聊天的文本对象
     EMChatText *chatText = [[EMChatText alloc] initWithText:text];
@@ -336,7 +336,7 @@
 - (void)sendMesssage:(id<IEMMessageBody>)body{
     
     //2.构造消息对象
-    EMMessage *msgObj = [[EMMessage alloc] initWithReceiver:self.buddy.username bodies:@[body]];
+    EMMessage *msgObj = [[EMMessage alloc] initWithReceiver:self.friendName bodies:@[body]];
     msgObj.messageType = eMessageTypeChat;
     
     //3.发送消息
@@ -390,7 +390,7 @@
 ///WARN: 接受好友的回复消息
 - (void)didReceiveMessage:(EMMessage *)message{
 #warning from 一定要等于当前的聊天用户才可以刷新数据
-    if ([message.from isEqualToString:self.buddy.username]) {
+    if ([message.from isEqualToString:self.friendName]) {
         //1.把接受的消息添加到数据源数组中
         [self addDataArrayWithMessage:message];
         //2.刷新表格

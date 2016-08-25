@@ -72,7 +72,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="snQ-Tf-TdQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="204.5" y="-978.5"/>
+            <point key="canvasLocation" x="175.5" y="-1028.5"/>
         </scene>
         <!--Add Friends-->
         <scene sceneID="rfF-B3-KBo">
@@ -115,7 +115,7 @@
         <scene sceneID="PDj-Vs-Axg">
             <objects>
                 <navigationController id="Am3-Ty-65r" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Conversation" image="tabbar_mainframe" id="pkP-Z1-50G"/>
+                    <tabBarItem key="tabBarItem" title="Conversation" image="tabbar_mainframe" selectedImage="tabbar_mainframeHL" id="pkP-Z1-50G"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="WFK-0A-QdQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -127,7 +127,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VNg-pE-c1S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-334.5" y="-1022.5"/>
+            <point key="canvasLocation" x="-346.5" y="-1036.5"/>
         </scene>
         <!--AddressBook-->
         <scene sceneID="EK2-cg-NmA">
@@ -201,7 +201,7 @@
         <scene sceneID="SdW-j6-ce1">
             <objects>
                 <navigationController id="dgA-Ei-QHL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Discover" image="tabbar_discover" id="eoe-bY-d1h"/>
+                    <tabBarItem key="tabBarItem" title="Discover" image="tabbar_discover" selectedImage="tabbar_discoverHL" id="eoe-bY-d1h"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="5mA-rl-rzi">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -459,13 +459,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iAb-Jw-iIm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="956.5" y="12.5"/>
+            <point key="canvasLocation" x="802.5" y="19.5"/>
         </scene>
         <!--AddressBook-->
         <scene sceneID="A6x-cf-xxW">
             <objects>
                 <navigationController id="M4h-UE-wDd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="AddressBook" image="tabbar_contacts-1" id="qtp-rx-zwr"/>
+                    <tabBarItem key="tabBarItem" title="AddressBook" image="tabbar_contacts" selectedImage="tabbar_contactsHL" id="qtp-rx-zwr"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="X2j-R0-yk3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -538,7 +538,7 @@
         <scene sceneID="InE-aJ-VGZ">
             <objects>
                 <navigationController id="PBx-v0-IEh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Me" image="tabbar_me" id="nZP-3h-ZtY"/>
+                    <tabBarItem key="tabBarItem" title="Me" image="tabbar_me" selectedImage="tabbar_meHL" id="nZP-3h-ZtY"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aFn-b4-sey">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -562,9 +562,13 @@
         <image name="chatListCellHead" width="51" height="51"/>
         <image name="chat_receiver_bg" width="40" height="40"/>
         <image name="chat_sender_bg" width="40" height="40"/>
-        <image name="tabbar_contacts-1" width="27" height="23"/>
+        <image name="tabbar_contacts" width="27" height="23"/>
+        <image name="tabbar_contactsHL" width="27" height="23"/>
         <image name="tabbar_discover" width="23" height="23"/>
+        <image name="tabbar_discoverHL" width="23" height="23"/>
         <image name="tabbar_mainframe" width="25" height="23"/>
+        <image name="tabbar_mainframeHL" width="25" height="23"/>
         <image name="tabbar_me" width="23" height="23"/>
+        <image name="tabbar_meHL" width="23" height="23"/>
     </resources>
 </document>

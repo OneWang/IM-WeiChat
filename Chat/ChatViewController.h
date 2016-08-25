@@ -13,4 +13,7 @@
 /** 好友 */
 @property (strong, nonatomic) EMBuddy *buddy;
 
+/// 好友名字
+@property (copy, nonatomic) NSString *friendName;
+
 @end

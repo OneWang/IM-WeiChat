@@ -14,4 +14,7 @@
 
 #import "EaseMob.h"
 
+#import "MJRefresh.h"
+#import "MJExtension.h"
+
 #endif /* PrefixHeader_pch */

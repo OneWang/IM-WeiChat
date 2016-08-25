@@ -9,15 +9,61 @@
 #import "AddressbookViewController.h"
 #import "EaseMob.h"
 #import "ChatViewController.h"
+#import "ContacterTools.h"
+#import "ContactCell.h"
+#import "ContactModel.h"
+#import "ApplyViewController.h"
 
 @interface AddressbookViewController ()<EMChatManagerDelegate>
 
 //好友列表数据源
-@property (strong, nonatomic) NSArray *buddyList;
+@property (strong, nonatomic) NSMutableArray *buddyList;
+
+// 功能列表
+@property (nonatomic, strong) NSMutableArray *functionGroup;
+/** 格式化的好友列表数据 */
+@property (nonatomic, strong) NSMutableArray *data;
+/** 拼音首字母列表 */
+@property (nonatomic, strong) NSMutableArray *section;
 
 @end
 
 @implementation AddressbookViewController
+- (NSMutableArray *)data
+{
+    if (!_data) {
+        _data = [NSMutableArray array];
+    }
+    return _data;
+}
+- (NSMutableArray *)section
+{
+    if (!_section) {
+        _section = [NSMutableArray array];
+    }
+    return _section;
+}
+- (NSMutableArray *)functionGroup
+{
+    if (!_functionGroup) {
+        _functionGroup = [NSMutableArray array];
+    }
+    return _functionGroup;
+}
+- (NSMutableArray *)buddyList
+{
+    if (!_buddyList) {
+        _buddyList = [NSMutableArray array];
+    }
+    return _buddyList;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self reloadData];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,8 +85,6 @@
        2.用户第一次登录后,自动从服务器获取还有列表
      */
     
-    self.buddyList = [[EaseMob sharedInstance].chatManager buddyList];
-    
 //    [[EaseMob sharedInstance].chatManager asyncFetchBuddyListWithCompletion:<#^(NSArray *buddyList, EMError *error)completion#> onQueue:<#(dispatch_queue_t)#>]
     
 #warning buddyList没有值的情况是1.第一次登录 2.自动登录没有完成
@@ -49,37 +93,110 @@
 //    }
 }
 
+- (void)reloadData{
+    [self.buddyList removeAllObjects];
+    [self getData];
+}
+
+- (void)getData{
+    NSArray *array = [[EaseMob sharedInstance].chatManager buddyList];
+    for (EMBuddy *buddy in array) {
+        [self.buddyList addObject:buddy.username];
+    }
+    self.functionGroup = [ContacterTools getFriensListItemsGroup];
+    self.data = [ContacterTools getFriendListDataBy:self.buddyList];
+    self.section = [ContacterTools getFriendListSectionBy:_data];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
+}
+
 #pragma mark - Table view data source
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return self.data.count + 1;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete implementation, return the number of rows
-    return self.buddyList.count;
+    if (section == 0) {
+        return self.functionGroup.count;
+    }
+    NSArray *array = [self.data objectAtIndex:section - 1];
+    return array.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *ID = @"BubbyCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    
-    // 获取好友模型
-    EMBuddy *buddy = self.buddyList[indexPath.row];
-    
-    cell.imageView.image = [UIImage imageNamed:@"chatListCellHead"];
-    cell.textLabel.text = buddy.username;
-    
-    return cell;
+    if (indexPath.section == 0) {
+        ContactCell *cell = [ContactCell cellWithTableView:tableView];
+        ContactModel *group = self.functionGroup[indexPath.row];
+        cell.group = group;
+        return cell;
+    }else {
+        ContactCell *cell = [ContactCell cellWithTableView:tableView];
+        NSArray *array = [self.data objectAtIndex:indexPath.section - 1];
+        cell.buddy = [array objectAtIndex:indexPath.row];
+        return cell;
+    }
 }
 
+#pragma mark - Table view delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == 0) {
+        switch (indexPath.row) {
+            case 0:
+                [self.navigationController pushViewController:[ApplyViewController shareController] animated:YES];
+                break;
+            case 1:
+                break;
+        }
+    }else {
+        NSArray *array = [self.data objectAtIndex:indexPath.section - 1];
+        NSString *buddy = [array objectAtIndex:indexPath.row];
+        ChatViewController *chatVc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"chatpage"];
+        chatVc.friendName = buddy;
+        [self.navigationController pushViewController:chatVc animated:YES];
+    }
+}
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+{
+    return self.section;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) return 0;
+    return 22;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) return nil;
+    
+    UIView *contentView = [[UIView alloc] init];
+    [contentView setBackgroundColor:[UIColor colorWithRed:0.88 green:0.88 blue:0.88 alpha:1.0]];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, 22)];
+    label.backgroundColor = [UIColor clearColor];
+    [label setText:[self.section objectAtIndex:section]];
+    [contentView addSubview:label];
+    return contentView;
+}
 #pragma mark 实现下列方法就会出现cell的delete按钮
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
         //获取移除好友的名字
-        EMBuddy *buddy = self.buddyList[indexPath.row];
-        NSString *username = buddy.username;
+        NSArray *array = [self.data objectAtIndex:indexPath.section - 1];
         
+        NSString *username = array[indexPath.row];
         [[EaseMob sharedInstance].chatManager removeBuddy:username removeFromRemote:YES error:nil];
+        NSLog(@"被删除用户:%@",username);
+        [self reloadData];
     }
 }
 
@@ -88,8 +205,7 @@
 - (void)didAutoLoginWithInfo:(NSDictionary *)loginInfo error:(EMError *)error
 {
     if (!error) {//自动登录成功后此时的buddyList才有值
-        self.buddyList = [[EaseMob sharedInstance].chatManager buddyList];
-        NSLog(@"%@",self.buddyList);
+        [self reloadData];
         //刷新表格
         [self.tableView reloadData];
     }
@@ -106,10 +222,10 @@
 }
 
 //从服务器获取好友列表
--(void)loadBuddyListFromServer{
+- (void)loadBuddyListFromServer{
     [[EaseMob sharedInstance].chatManager asyncFetchBuddyListWithCompletion:^(NSArray *buddyList, EMError *error) {
         //赋值给数据源
-        self.buddyList = buddyList;
+        [self reloadData];
         //刷新
         [self.tableView reloadData];
     } onQueue:nil];
@@ -120,7 +236,7 @@
 {
     NSLog(@"好友数据列表被更新:%@",buddyList);
     //赋值给数据源
-    self.buddyList = buddyList;
+    [self reloadData];
     //刷新
     [self.tableView reloadData];
 }
