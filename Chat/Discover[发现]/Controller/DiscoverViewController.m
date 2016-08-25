@@ -8,92 +8,64 @@
 
 #import "DiscoverViewController.h"
 #import "MJRefresh.h"
+#import "SettingItem.h"
+#import "SettingCell.h"
+#import "SettingGroupItem.h"
+#import "MomentsController.h"
 
 @interface DiscoverViewController ()
+
 
 @end
 
 @implementation DiscoverViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    [self setupGroup0];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
-}
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    [self setupGroup1];
     
-    // Configure the cell...
+    [self setupGroup2];
     
-    return cell;
+    [self setupGroup3];
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (void)setupGroup0{
+    SettingItem * friend = [SettingItem itemWithIcon:@"ff_IconShowAlbum" title:@"朋友圈" destVcClass:[MomentsController class]];
+    friend.type = SettingTypeArrow;
+    SettingGroupItem * group = [[SettingGroupItem alloc] init];
+    group.items = @[friend];
+    [self.dataArray addObject:group];
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+- (void)setupGroup1{
+    SettingItem * QRCode = [SettingItem itemWithIcon:@"ff_IconQRCode" title:@"扫一扫" destVcClass:[MomentsController class]];
+    QRCode.type = SettingTypeArrow;
+    SettingItem * shake = [SettingItem itemWithIcon:@"ff_IconShake" title:@"摇一摇" destVcClass:[MomentsController class]];
+    shake.type = SettingTypeArrow;
+    SettingGroupItem * group = [[SettingGroupItem alloc] init];
+    group.items = @[QRCode,shake];
+    [self.dataArray addObject:group];
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+- (void)setupGroup2{
+    SettingItem * location = [SettingItem itemWithIcon:@"ff_IconLocationService" title:@"附近的人" destVcClass:[MomentsController class]];
+    location.type = SettingTypeArrow;
+    SettingGroupItem * group = [[SettingGroupItem alloc] init];
+    group.items = @[location];
+    [self.dataArray addObject:group];
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+- (void)setupGroup3{
+    SettingItem * shop = [SettingItem itemWithIcon:@"CreditCard_ShoppingBag" title:@"购物" destVcClass:[MomentsController class]];
+    shop.type = SettingTypeArrow;
+    SettingItem *  game = [SettingItem itemWithIcon:@"MoreGame" title:@"游戏" destVcClass:[MomentsController class]];
+    game.type = SettingTypeArrow;
+    SettingGroupItem * group = [[SettingGroupItem alloc] init];
+    group.items = @[shop,game];
+    [self.dataArray addObject:group];
 }
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end

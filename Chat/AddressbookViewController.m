@@ -13,8 +13,12 @@
 #import "ContactCell.h"
 #import "ContactModel.h"
 #import "ApplyViewController.h"
+#import "ContactResultController.h"
 
-@interface AddressbookViewController ()<EMChatManagerDelegate>
+@interface AddressbookViewController ()<EMChatManagerDelegate,UISearchBarDelegate>
+
+///搜索框
+@property (nonatomic, strong) UISearchController *searchController;
 
 //好友列表数据源
 @property (strong, nonatomic) NSMutableArray *buddyList;
@@ -61,6 +65,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.tableView.rowHeight = 44;
     
     [self reloadData];
 }
@@ -91,6 +96,44 @@
 //    if (self.buddyList.count == 0) {//数据库没有好友记录
 //        
 //    }
+}
+
+- (UISearchController *)createSearchController{
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:[ContactResultController new]];
+    self.searchController.view.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.95];
+    
+    UISearchBar *bar = self.searchController.searchBar;
+    bar.barStyle = UIBarStyleDefault;
+    bar.translucent = YES;
+    bar.barTintColor = [UIColor lightGrayColor];
+    bar.tintColor = [UIColor colorWithRed:0 green:(190 / 255.0) blue:(12 / 255.0) alpha:1];
+    UIImageView *view = [[[bar.subviews objectAtIndex:0] subviews] firstObject];
+    view.layer.borderColor = [UIColor blueColor].CGColor;
+    view.layer.borderWidth = 1;
+    
+    bar.layer.borderColor = [UIColor redColor].CGColor;
+    
+    bar.showsBookmarkButton = YES;
+    [bar setImage:[UIImage imageNamed:@"VoiceSearchStartBtn"] forSearchBarIcon:UISearchBarIconBookmark state:UIControlStateNormal];
+    bar.delegate = self;
+    CGRect rect = bar.frame;
+    rect.size.height = 44;
+    bar.frame = rect;
+    self.tableView.sectionIndexColor = [UIColor lightGrayColor];
+    self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
+    return self.searchController;
+}
+
+#pragma mark - UISearchBarDelegate
+
+- (void)searchBarBookmarkButtonClicked:(UISearchBar *)searchBar
+{
+   
+}
+
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+    return YES;
 }
 
 - (void)reloadData{
@@ -169,13 +212,14 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section == 0) return 0;
+    if (section == 0)return 44;
     return 22;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (section == 0) return nil;
+    if (section == 0)
+    return [self createSearchController].searchBar;
     
     UIView *contentView = [[UIView alloc] init];
     [contentView setBackgroundColor:[UIColor colorWithRed:0.88 green:0.88 blue:0.88 alpha:1.0]];

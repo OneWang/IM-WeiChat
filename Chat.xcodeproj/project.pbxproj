@@ -158,6 +158,13 @@
 		0ACDE6521D6E88AA00B2B004 /* icon4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0ACDE6351D6E88AA00B2B004 /* icon4.jpg */; };
 		0ACDE6551D6E894600B2B004 /* UILabel+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACDE6541D6E894600B2B004 /* UILabel+Extension.m */; };
 		0ACDE6581D6E9CB000B2B004 /* ApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACDE6571D6E9CB000B2B004 /* ApplyViewController.m */; };
+		0ACDE65B1D6ED86000B2B004 /* ContactResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACDE65A1D6ED86000B2B004 /* ContactResultController.m */; };
+		0ACDE65E1D6EEB4D00B2B004 /* SettingItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACDE65D1D6EEB4D00B2B004 /* SettingItem.m */; };
+		0ACDE6611D6EEB8000B2B004 /* SettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACDE6601D6EEB8000B2B004 /* SettingCell.m */; };
+		0ACDE6641D6EEC5A00B2B004 /* SettingGroupItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACDE6631D6EEC5A00B2B004 /* SettingGroupItem.m */; };
+		0ACDE6671D6EED7400B2B004 /* MomentsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACDE6661D6EED7400B2B004 /* MomentsController.m */; };
+		0ACDE66A1D6EEED000B2B004 /* BaseSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACDE6691D6EEED000B2B004 /* BaseSettingController.m */; };
+		0ACDE66D1D6F043100B2B004 /* ConversationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACDE66C1D6F043100B2B004 /* ConversationCell.m */; };
 		0AD370751CDACE720070EEF5 /* TimeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AD370741CDACE720070EEF5 /* TimeCell.m */; };
 		0AD370781CDAD1F90070EEF5 /* TimeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AD370771CDAD1F90070EEF5 /* TimeTool.m */; };
 		0AD498F21CD9DC9A00D0C8E2 /* EMAudioPlayerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AD498D41CD9DC9A00D0C8E2 /* EMAudioPlayerUtil.m */; };
@@ -532,6 +539,20 @@
 		0ACDE6541D6E894600B2B004 /* UILabel+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Extension.m"; sourceTree = "<group>"; };
 		0ACDE6561D6E9CB000B2B004 /* ApplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyViewController.h; sourceTree = "<group>"; };
 		0ACDE6571D6E9CB000B2B004 /* ApplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplyViewController.m; sourceTree = "<group>"; };
+		0ACDE6591D6ED86000B2B004 /* ContactResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactResultController.h; sourceTree = "<group>"; };
+		0ACDE65A1D6ED86000B2B004 /* ContactResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactResultController.m; sourceTree = "<group>"; };
+		0ACDE65C1D6EEB4D00B2B004 /* SettingItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingItem.h; sourceTree = "<group>"; };
+		0ACDE65D1D6EEB4D00B2B004 /* SettingItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingItem.m; sourceTree = "<group>"; };
+		0ACDE65F1D6EEB8000B2B004 /* SettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingCell.h; sourceTree = "<group>"; };
+		0ACDE6601D6EEB8000B2B004 /* SettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingCell.m; sourceTree = "<group>"; };
+		0ACDE6621D6EEC5A00B2B004 /* SettingGroupItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingGroupItem.h; sourceTree = "<group>"; };
+		0ACDE6631D6EEC5A00B2B004 /* SettingGroupItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingGroupItem.m; sourceTree = "<group>"; };
+		0ACDE6651D6EED7400B2B004 /* MomentsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MomentsController.h; sourceTree = "<group>"; };
+		0ACDE6661D6EED7400B2B004 /* MomentsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentsController.m; sourceTree = "<group>"; };
+		0ACDE6681D6EEED000B2B004 /* BaseSettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseSettingController.h; sourceTree = "<group>"; };
+		0ACDE6691D6EEED000B2B004 /* BaseSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseSettingController.m; sourceTree = "<group>"; };
+		0ACDE66B1D6F043100B2B004 /* ConversationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversationCell.h; sourceTree = "<group>"; };
+		0ACDE66C1D6F043100B2B004 /* ConversationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversationCell.m; sourceTree = "<group>"; };
 		0AD370731CDACE720070EEF5 /* TimeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeCell.h; sourceTree = "<group>"; };
 		0AD370741CDACE720070EEF5 /* TimeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeCell.m; sourceTree = "<group>"; };
 		0AD370761CDAD1F90070EEF5 /* TimeTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeTool.h; sourceTree = "<group>"; };
@@ -1157,8 +1178,8 @@
 		0AB22C401CD8467300A9DE3A /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				0AF436A71D6D51210086BA39 /* Discover[发现] */,
 				0A5FFD7D1D47387E006F828B /* Resourse */,
+				0AF436A71D6D51210086BA39 /* Discover[发现] */,
 				0AB22D1D1CD8A83700A9DE3A /* Chat[聊天] */,
 				0AB22D181CD8A11A00A9DE3A /* Setting[设置] */,
 				0AB22D101CD86DF400A9DE3A /* AddressBook[通讯录] */,
@@ -1292,6 +1313,7 @@
 		0AB22D0B1CD85E3B00A9DE3A /* Conversation[会话] */ = {
 			isa = PBXGroup;
 			children = (
+				0ACDE66E1D6F043700B2B004 /* Views */,
 				0AB22D0C1CD85E5B00A9DE3A /* Controllers */,
 			);
 			name = "Conversation[会话]";
@@ -1326,6 +1348,8 @@
 				0AB22D161CD87B5E00A9DE3A /* AddressbookViewController.m */,
 				0ACDE6561D6E9CB000B2B004 /* ApplyViewController.h */,
 				0ACDE6571D6E9CB000B2B004 /* ApplyViewController.m */,
+				0ACDE6591D6ED86000B2B004 /* ContactResultController.h */,
+				0ACDE65A1D6ED86000B2B004 /* ContactResultController.m */,
 			);
 			name = Conttrollers;
 			sourceTree = "<group>";
@@ -1471,6 +1495,15 @@
 			path = cell_icons;
 			sourceTree = "<group>";
 		};
+		0ACDE66E1D6F043700B2B004 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0ACDE66B1D6F043100B2B004 /* ConversationCell.h */,
+				0ACDE66C1D6F043100B2B004 /* ConversationCell.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		0AD498CD1CD9DC9A00D0C8E2 /* DeviceUtil */ = {
 			isa = PBXGroup;
 			children = (
@@ -1570,6 +1603,10 @@
 			children = (
 				0AF436AB1D6D51510086BA39 /* DiscoverViewController.h */,
 				0AF436AC1D6D51510086BA39 /* DiscoverViewController.m */,
+				0ACDE6651D6EED7400B2B004 /* MomentsController.h */,
+				0ACDE6661D6EED7400B2B004 /* MomentsController.m */,
+				0ACDE6681D6EEED000B2B004 /* BaseSettingController.h */,
+				0ACDE6691D6EEED000B2B004 /* BaseSettingController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1577,6 +1614,10 @@
 		0AF436A91D6D51210086BA39 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0ACDE6621D6EEC5A00B2B004 /* SettingGroupItem.h */,
+				0ACDE6631D6EEC5A00B2B004 /* SettingGroupItem.m */,
+				0ACDE65C1D6EEB4D00B2B004 /* SettingItem.h */,
+				0ACDE65D1D6EEB4D00B2B004 /* SettingItem.m */,
 				0A2273F41D6DA60500D5D1C9 /* TimeLineModel.h */,
 				0A2273F51D6DA60500D5D1C9 /* TimeLineModel.m */,
 			);
@@ -1586,6 +1627,8 @@
 		0AF436AA1D6D51210086BA39 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0ACDE65F1D6EEB8000B2B004 /* SettingCell.h */,
+				0ACDE6601D6EEB8000B2B004 /* SettingCell.m */,
 				0A2273F71D6DA69700D5D1C9 /* PhotoBrowser */,
 				0AF436BD1D6D84090086BA39 /* SDAutoLayout */,
 				0AF436B91D6D761C0086BA39 /* PhotoContainer */,
@@ -1855,6 +1898,7 @@
 				0AC89E931CDA0C3300AA53CF /* UIImage+WebP.m in Sources */,
 				0A2273B01D6DA1B700D5D1C9 /* ViewController+MASAdditions.m in Sources */,
 				0AF436BC1D6D761C0086BA39 /* PhotoContainerView.m in Sources */,
+				0ACDE6641D6EEC5A00B2B004 /* SettingGroupItem.m in Sources */,
 				0A5FFD6E1D47235D006F828B /* EmojiView.m in Sources */,
 				0A5FFD751D472405006F828B /* EmojiTextAttachment.m in Sources */,
 				0ACDE6581D6E9CB000B2B004 /* ApplyViewController.m in Sources */,
@@ -1863,7 +1907,9 @@
 				0ACDE6551D6E894600B2B004 /* UILabel+Extension.m in Sources */,
 				0A22754C1D6DCBD100D5D1C9 /* MJFoundation.m in Sources */,
 				0AD498FB1CD9DC9A00D0C8E2 /* EMVoiceConverter.mm in Sources */,
+				0ACDE6671D6EED7400B2B004 /* MomentsController.m in Sources */,
 				0AB22C461CD8467300A9DE3A /* AppDelegate.m in Sources */,
+				0ACDE66D1D6F043100B2B004 /* ConversationCell.m in Sources */,
 				0A2273E11D6DA5A200D5D1C9 /* MJRefreshBackFooter.m in Sources */,
 				0AC89E641CD9EE7700AA53CF /* AudioPlayTool.m in Sources */,
 				0ACCCF151CD9741100B1F817 /* ChatCell.m in Sources */,
@@ -1878,6 +1924,7 @@
 				0A2273ED1D6DA5A200D5D1C9 /* MJRefreshStateHeader.m in Sources */,
 				0AD498F51CD9DC9A00D0C8E2 /* EMCDDeviceManager+Microphone.m in Sources */,
 				0A5FFD721D4723E9006F828B /* NSAttributedString+EmojiExtension.m in Sources */,
+				0ACDE65B1D6ED86000B2B004 /* ContactResultController.m in Sources */,
 				0A2273EC1D6DA5A200D5D1C9 /* MJRefreshNormalHeader.m in Sources */,
 				0A2273AA1D6DA1B700D5D1C9 /* MASLayoutConstraint.m in Sources */,
 				0AC89E881CDA0C3300AA53CF /* NSData+ImageContentType.m in Sources */,
@@ -1894,10 +1941,13 @@
 				0A2273F31D6DA5A200D5D1C9 /* UIView+MJExtension.m in Sources */,
 				0A2274011D6DA69700D5D1C9 /* WaitingView.m in Sources */,
 				0A2275341D6DCB8500D5D1C9 /* ContactModel.m in Sources */,
+				0ACDE6611D6EEB8000B2B004 /* SettingCell.m in Sources */,
 				0A2273F61D6DA60500D5D1C9 /* TimeLineModel.m in Sources */,
 				0AD498F21CD9DC9A00D0C8E2 /* EMAudioPlayerUtil.m in Sources */,
 				0A2275301D6DC99900D5D1C9 /* ContactCell.m in Sources */,
+				0ACDE66A1D6EEED000B2B004 /* BaseSettingController.m in Sources */,
 				0A2275501D6DCBD100D5D1C9 /* NSObject+MJClass.m in Sources */,
+				0ACDE65E1D6EEB4D00B2B004 /* SettingItem.m in Sources */,
 				0AB22D1C1CD8A14300A9DE3A /* SettingViewController.m in Sources */,
 				0A2273E31D6DA5A200D5D1C9 /* MJRefreshFooter.m in Sources */,
 			);

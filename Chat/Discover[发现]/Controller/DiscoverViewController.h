@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseSettingController.h"
 
-@interface DiscoverViewController : UITableViewController
+@interface DiscoverViewController : BaseSettingController
 
 @end
