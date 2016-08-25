@@ -10,4 +10,8 @@
 
 @interface ConversationCell : UITableViewCell
 
++ (instancetype)cellWithTableView:(UITableView *)tableView;
+///会话模型
+@property (nonatomic, strong) EMConversation *conversaion;
+
 @end

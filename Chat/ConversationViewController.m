@@ -10,6 +10,7 @@
 #import "EaseMob.h"
 #import "MBProgressHUD+MJ.h"
 #import "ChatViewController.h"
+#import "ConversationCell.h"
 
 @interface ConversationViewController ()<EMChatManagerDelegate>
 
@@ -28,6 +29,8 @@
     
     //获取历史会话记录
     [self loadConversations];
+    
+    self.tableView.rowHeight = 70;
     
 }
 //
@@ -78,27 +81,32 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *concersations = @"conversationCell";
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:concersations];
+//    static NSString *concersations = @"conversationCell";
+//    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:concersations];
     
     //获取会话模型
-    EMConversation *conversation = self.conversations[indexPath.row];
+//    EMConversation *conversation = self.conversations[indexPath.row];
     //显示用户名
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ ===未读的消息数: %ld",conversation.chatter,conversation.unreadMessagesCount ];
+//    cell.textLabel.text = [NSString stringWithFormat:@"%@ ===未读的消息数: %ld",conversation.chatter,conversation.unreadMessagesCount ];
+//    
+//    //显示最新的一条记录
+//    //获取消息体
+//    id body = conversation.latestMessage.messageBodies[0];
+//    if ([body isKindOfClass:[EMTextMessageBody class]]) {
+//        EMTextMessageBody *textBody = body;
+//        cell.detailTextLabel.text = textBody.text;
+//    }else if ([body isKindOfClass:[EMVoiceMessageBody class]]){
+//        EMVoiceMessageBody *voiceBody = body;
+//        cell.detailTextLabel.text = voiceBody.displayName;
+//    }else if([body isKindOfClass:[EMImageMessageBody class]]){
+////        EMImageMessageBody *imageBody = body;
+//        cell.detailTextLabel.text = @"未知的消息类型";
+//    }
     
-    //显示最新的一条记录
-    //获取消息体
-    id body = conversation.latestMessage.messageBodies[0];
-    if ([body isKindOfClass:[EMTextMessageBody class]]) {
-        EMTextMessageBody *textBody = body;
-        cell.detailTextLabel.text = textBody.text;
-    }else if ([body isKindOfClass:[EMVoiceMessageBody class]]){
-        EMVoiceMessageBody *voiceBody = body;
-        cell.detailTextLabel.text = voiceBody.displayName;
-    }else if([body isKindOfClass:[EMImageMessageBody class]]){
-//        EMImageMessageBody *imageBody = body;
-        cell.detailTextLabel.text = @"未知的消息类型";
-    }
+    ConversationCell *cell = [ConversationCell cellWithTableView:tableView];
+    //获取会话模型
+    EMConversation *conversation = self.conversations[indexPath.row];
+    cell.conversaion = conversation;
     return cell;
 }
 

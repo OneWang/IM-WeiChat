@@ -165,6 +165,8 @@
 		0ACDE6671D6EED7400B2B004 /* MomentsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACDE6661D6EED7400B2B004 /* MomentsController.m */; };
 		0ACDE66A1D6EEED000B2B004 /* BaseSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACDE6691D6EEED000B2B004 /* BaseSettingController.m */; };
 		0ACDE66D1D6F043100B2B004 /* ConversationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACDE66C1D6F043100B2B004 /* ConversationCell.m */; };
+		0ACDE6721D6F19D300B2B004 /* BadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACDE6711D6F19D300B2B004 /* BadgeView.m */; };
+		0ACDE6751D6F1E4F00B2B004 /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACDE6741D6F1E4F00B2B004 /* NSDate+Extension.m */; };
 		0AD370751CDACE720070EEF5 /* TimeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AD370741CDACE720070EEF5 /* TimeCell.m */; };
 		0AD370781CDAD1F90070EEF5 /* TimeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AD370771CDAD1F90070EEF5 /* TimeTool.m */; };
 		0AD498F21CD9DC9A00D0C8E2 /* EMAudioPlayerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AD498D41CD9DC9A00D0C8E2 /* EMAudioPlayerUtil.m */; };
@@ -553,6 +555,10 @@
 		0ACDE6691D6EEED000B2B004 /* BaseSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseSettingController.m; sourceTree = "<group>"; };
 		0ACDE66B1D6F043100B2B004 /* ConversationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversationCell.h; sourceTree = "<group>"; };
 		0ACDE66C1D6F043100B2B004 /* ConversationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversationCell.m; sourceTree = "<group>"; };
+		0ACDE6701D6F19D300B2B004 /* BadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BadgeView.h; sourceTree = "<group>"; };
+		0ACDE6711D6F19D300B2B004 /* BadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BadgeView.m; sourceTree = "<group>"; };
+		0ACDE6731D6F1E4F00B2B004 /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
+		0ACDE6741D6F1E4F00B2B004 /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
 		0AD370731CDACE720070EEF5 /* TimeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeCell.h; sourceTree = "<group>"; };
 		0AD370741CDACE720070EEF5 /* TimeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeCell.m; sourceTree = "<group>"; };
 		0AD370761CDAD1F90070EEF5 /* TimeTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeTool.h; sourceTree = "<group>"; };
@@ -1313,6 +1319,7 @@
 		0AB22D0B1CD85E3B00A9DE3A /* Conversation[会话] */ = {
 			isa = PBXGroup;
 			children = (
+				0ACDE66F1D6F19C100B2B004 /* Tool */,
 				0ACDE66E1D6F043700B2B004 /* Views */,
 				0AB22D0C1CD85E5B00A9DE3A /* Controllers */,
 			);
@@ -1502,6 +1509,17 @@
 				0ACDE66C1D6F043100B2B004 /* ConversationCell.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		0ACDE66F1D6F19C100B2B004 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				0ACDE6701D6F19D300B2B004 /* BadgeView.h */,
+				0ACDE6711D6F19D300B2B004 /* BadgeView.m */,
+				0ACDE6731D6F1E4F00B2B004 /* NSDate+Extension.h */,
+				0ACDE6741D6F1E4F00B2B004 /* NSDate+Extension.m */,
+			);
+			name = Tool;
 			sourceTree = "<group>";
 		};
 		0AD498CD1CD9DC9A00D0C8E2 /* DeviceUtil */ = {
@@ -1936,6 +1954,7 @@
 				0A22754B1D6DCBD100D5D1C9 /* MJExtensionConst.m in Sources */,
 				0A2273AC1D6DA1B700D5D1C9 /* MASViewConstraint.m in Sources */,
 				0A2275511D6DCBD100D5D1C9 /* NSObject+MJCoding.m in Sources */,
+				0ACDE6751D6F1E4F00B2B004 /* NSDate+Extension.m in Sources */,
 				0AD498F61CD9DC9A00D0C8E2 /* EMCDDeviceManager+ProximitySensor.m in Sources */,
 				0AC89E891CDA0C3300AA53CF /* SDImageCache.m in Sources */,
 				0A2273F31D6DA5A200D5D1C9 /* UIView+MJExtension.m in Sources */,
@@ -1949,6 +1968,7 @@
 				0A2275501D6DCBD100D5D1C9 /* NSObject+MJClass.m in Sources */,
 				0ACDE65E1D6EEB4D00B2B004 /* SettingItem.m in Sources */,
 				0AB22D1C1CD8A14300A9DE3A /* SettingViewController.m in Sources */,
+				0ACDE6721D6F19D300B2B004 /* BadgeView.m in Sources */,
 				0A2273E31D6DA5A200D5D1C9 /* MJRefreshFooter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2094,6 +2114,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Chat/PrefixHeader.pch";
 				INFOPLIST_FILE = Chat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2115,6 +2136,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Chat/PrefixHeader.pch";
 				INFOPLIST_FILE = Chat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
