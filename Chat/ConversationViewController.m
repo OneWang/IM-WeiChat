@@ -121,7 +121,7 @@
     EMBuddy *buddy = [EMBuddy buddyWithUsername:conversation.chatter];
     //设置为好友属性
     chatVC.buddy = buddy;
-    
+    chatVC.friendName = buddy.username;
     //展现聊天界面
     [self.navigationController pushViewController:chatVC animated:YES];
 }

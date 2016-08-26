@@ -89,7 +89,6 @@
         if ([vc isKindOfClass:[UIViewController class]]){
             [self.navigationController pushViewController:vc animated:YES];
         }
-        NSLog(@"navigationController : %@",self.navigationController);
     }
 }
 @end
