@@ -59,7 +59,7 @@
 		0A5481511D7045580033B695 /* LikeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5481501D7045580033B695 /* LikeModel.m */; };
 		0A5481541D70456A0033B695 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5481531D70456A0033B695 /* CommentModel.m */; };
 		0A5481571D70474E0033B695 /* CommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5481561D70474E0033B695 /* CommentView.m */; };
-		0A54815A1D7047F40033B695 /* LiveMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5481591D7047F40033B695 /* LiveMenu.m */; };
+		0A54815A1D7047F40033B695 /* LikeMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5481591D7047F40033B695 /* LikeMenu.m */; };
 		0A5481801D704AA30033B695 /* MLEmoji_Expression.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A54815C1D704AA30033B695 /* MLEmoji_Expression.bundle */; };
 		0A5481811D704AA30033B695 /* MLEmoji_Expression.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A54815D1D704AA30033B695 /* MLEmoji_Expression.plist */; };
 		0A5481821D704AA30033B695 /* MLEmoji_ExpressionImage.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A54815E1D704AA30033B695 /* MLEmoji_ExpressionImage.plist */; };
@@ -74,8 +74,6 @@
 		0A54818B1D704AA30033B695 /* MLLabelLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5481761D704AA30033B695 /* MLLabelLayoutManager.m */; };
 		0A54818C1D704AA30033B695 /* MLLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5481781D704AA30033B695 /* MLLabel.m */; };
 		0A54818D1D704AA30033B695 /* MLLinkLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A54817A1D704AA30033B695 /* MLLinkLabel.m */; };
-		0A54818E1D704AA30033B695 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 0A54817B1D704AA30033B695 /* LICENSE */; };
-		0A54818F1D704AA30033B695 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 0A54817C1D704AA30033B695 /* README.md */; };
 		0A5481901D704AA30033B695 /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A54817F1D704AA30033B695 /* TTTAttributedLabel.m */; };
 		0A5FFD6E1D47235D006F828B /* EmojiView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5FFD6D1D47235D006F828B /* EmojiView.m */; };
 		0A5FFD721D4723E9006F828B /* NSAttributedString+EmojiExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5FFD711D4723E9006F828B /* NSAttributedString+EmojiExtension.m */; };
@@ -338,8 +336,8 @@
 		0A5481531D70456A0033B695 /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
 		0A5481551D70474E0033B695 /* CommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentView.h; sourceTree = "<group>"; };
 		0A5481561D70474E0033B695 /* CommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentView.m; sourceTree = "<group>"; };
-		0A5481581D7047F40033B695 /* LiveMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveMenu.h; sourceTree = "<group>"; };
-		0A5481591D7047F40033B695 /* LiveMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveMenu.m; sourceTree = "<group>"; };
+		0A5481581D7047F40033B695 /* LikeMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LikeMenu.h; sourceTree = "<group>"; };
+		0A5481591D7047F40033B695 /* LikeMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LikeMenu.m; sourceTree = "<group>"; };
 		0A54815C1D704AA30033B695 /* MLEmoji_Expression.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MLEmoji_Expression.bundle; sourceTree = "<group>"; };
 		0A54815D1D704AA30033B695 /* MLEmoji_Expression.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MLEmoji_Expression.plist; sourceTree = "<group>"; };
 		0A54815E1D704AA30033B695 /* MLEmoji_ExpressionImage.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MLEmoji_ExpressionImage.plist; sourceTree = "<group>"; };
@@ -366,8 +364,6 @@
 		0A5481781D704AA30033B695 /* MLLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLLabel.m; sourceTree = "<group>"; };
 		0A5481791D704AA30033B695 /* MLLinkLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLLinkLabel.h; sourceTree = "<group>"; };
 		0A54817A1D704AA30033B695 /* MLLinkLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLLinkLabel.m; sourceTree = "<group>"; };
-		0A54817B1D704AA30033B695 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		0A54817C1D704AA30033B695 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0A54817E1D704AA30033B695 /* TTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTAttributedLabel.h; sourceTree = "<group>"; };
 		0A54817F1D704AA30033B695 /* TTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTAttributedLabel.m; sourceTree = "<group>"; };
 		0A5FFD6C1D47235D006F828B /* EmojiView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmojiView.h; sourceTree = "<group>"; };
@@ -920,8 +916,6 @@
 			isa = PBXGroup;
 			children = (
 				0A5481621D704AA30033B695 /* Classes */,
-				0A54817B1D704AA30033B695 /* LICENSE */,
-				0A54817C1D704AA30033B695 /* README.md */,
 			);
 			path = MLLabel;
 			sourceTree = "<group>";
@@ -1804,8 +1798,8 @@
 				0AF436B91D6D761C0086BA39 /* PhotoContainer */,
 				0A5481491D6FFF1E0033B695 /* MomentCell.h */,
 				0A54814A1D6FFF1E0033B695 /* MomentCell.m */,
-				0A5481581D7047F40033B695 /* LiveMenu.h */,
-				0A5481591D7047F40033B695 /* LiveMenu.m */,
+				0A5481581D7047F40033B695 /* LikeMenu.h */,
+				0A5481591D7047F40033B695 /* LikeMenu.m */,
 				0A5481551D70474E0033B695 /* CommentView.h */,
 				0A5481561D70474E0033B695 /* CommentView.m */,
 			);
@@ -1943,7 +1937,6 @@
 				0ACDE6441D6E88AA00B2B004 /* 21.jpg in Resources */,
 				0ACDE64B1D6E88AA00B2B004 /* 7.jpg in Resources */,
 				0A5481801D704AA30033B695 /* MLEmoji_Expression.bundle in Resources */,
-				0A54818E1D704AA30033B695 /* LICENSE in Resources */,
 				0AB22C511CD8467300A9DE3A /* LaunchScreen.storyboard in Resources */,
 				0ACDE6511D6E88AA00B2B004 /* icon3.jpg in Resources */,
 				0A5FFDEE1D4738BC006F828B /* 2_1.gif in Resources */,
@@ -2041,7 +2034,7 @@
 				0AC89E8A1CDA0C3300AA53CF /* SDWebImageCompat.m in Sources */,
 				0A54818A1D704AA30033B695 /* NSString+MLExpression.m in Sources */,
 				0A2274001D6DA69700D5D1C9 /* PhotoBrowser.m in Sources */,
-				0A54815A1D7047F40033B695 /* LiveMenu.m in Sources */,
+				0A54815A1D7047F40033B695 /* LikeMenu.m in Sources */,
 				0AC89E8D1CDA0C3300AA53CF /* SDWebImageDownloaderOperation.m in Sources */,
 				0AB22D0F1CD85EA000A9DE3A /* ConversationViewController.m in Sources */,
 				0A2273AD1D6DA1B700D5D1C9 /* NSArray+MASAdditions.m in Sources */,
@@ -2075,7 +2068,6 @@
 				0AD498FA1CD9DC9A00D0C8E2 /* wav.mm in Sources */,
 				0A2273E41D6DA5A200D5D1C9 /* MJRefreshHeader.m in Sources */,
 				0A2275531D6DCBD100D5D1C9 /* NSObject+MJProperty.m in Sources */,
-				0A54818F1D704AA30033B695 /* README.md in Sources */,
 				0A2273F11D6DA5A200D5D1C9 /* UIScrollView+MJExtension.m in Sources */,
 				0A2275541D6DCBD100D5D1C9 /* NSString+MJExtension.m in Sources */,
 				0AD498F71CD9DC9A00D0C8E2 /* EMCDDeviceManager+Remind.m in Sources */,

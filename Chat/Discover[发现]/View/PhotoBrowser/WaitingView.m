@@ -36,7 +36,7 @@
     _progress = progress;
     [self setNeedsDisplay];
     if (progress >= 1) {
-        [self removeFromSuperview];
+//        [self removeFromSuperview];
     }
 }
 

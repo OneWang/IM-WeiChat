@@ -124,7 +124,6 @@
     int randomIndex = arc4random_uniform(23);
     self.iconView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%d.jpg",randomIndex]];
     
-    NSLog(@"%ld",[conversaion unreadMessagesCount]);
     self.badgeView.badgeValue = [NSString stringWithFormat:@"%ld",[conversaion unreadMessagesCount]];
     
     self.nickLabel.text = conversaion.chatter;

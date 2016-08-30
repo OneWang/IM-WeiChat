@@ -33,7 +33,6 @@ extern CGFloat maxContentLabelHeight;
             _shouldShowMoreButton = NO;
         }
     }
-    
     return _msgContent;
 }
 

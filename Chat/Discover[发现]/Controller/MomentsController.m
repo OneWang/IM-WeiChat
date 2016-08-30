@@ -6,6 +6,9 @@
 //  Copyright © 2016年 LI. All rights reserved.
 //
 
+#define kScreenWidth [UIScreen mainScreen].bounds.size.width
+#define kScreenHeight [UIScreen mainScreen].bounds.size.height
+
 #import "MomentsController.h"
 #import "MomentCell.h"
 #import "MomentModel.h"
@@ -45,7 +48,9 @@ static CGFloat textFieldH = 40;
 {
     [super viewDidLoad];
     
-    self.tableView.estimatedRowHeight = 300;
+    self.navigationController.navigationBar.translucent = NO;
+    
+    self.tableView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight - 69);
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     
@@ -81,32 +86,32 @@ static CGFloat textFieldH = 40;
                                      @"icon4.jpg",
                                      ];
     
-    NSArray *namesArray = @[@"GSD_iOS",
-                            @"风口上的猪",
-                            @"当今世界网名都不好起了",
-                            @"我叫郭德纲",
-                            @"Hello Kitty"];
+    NSArray *namesArray = @[@"OneWang_iOS",
+                            @"风芊语芊寻上的猪",
+                            @"芊语芊寻",
+                            @"我叫芊语芊寻",
+                            @"Hel芊语芊寻tty"];
     
-    NSArray *textArray = @[@"当你的 app 没有提供 3x 的 LaunchImage 时，系统默认进入兼容模式，https://github.com/gsdios/SDAutoLayout大屏幕一切按照 320 宽度渲染，屏幕宽度返回 320；然后等比例拉伸到大屏。这种情况下对界面不会产生任何影响，等于把小屏完全拉伸。",
-                           @"然后等比例拉伸到大屏。这种情况下对界面不会产生任何影响，https://github.com/gsdios/SDAutoLayout等于把小屏完全拉伸。",
-                           @"当你的 app 没有提供 3x 的 LaunchImage 时屏幕宽度返回 320；然后等比例拉伸到大屏。这种情况下对界面不会产生任何影响，等于把小屏完全拉伸。但是建议不要长期处于这种模式下。屏幕宽度返回 320；https://github.com/gsdios/SDAutoLayout然后等比例拉伸到大屏。这种情况下对界面不会产生任何影响，等于把小屏完全拉伸。但是建议不要长期处于这种模式下。屏幕宽度返回 320；然后等比例拉伸到大屏。这种情况下对界面不会产生任何影响，等于把小屏完全拉伸。但是建议不要长期处于这种模式下。",
-                           @"但是建议不要长期处于这种模式下，否则在大屏上会显得字大，内容少，容易遭到用户投诉。",
-                           @"屏幕宽度返回 320；https://github.com/gsdios/SDAutoLayout然后等比例拉伸到大屏。这种情况下对界面不会产生任何影响，等于把小屏完全拉伸。但是建议不要长期处于这种模式下。"
+    NSArray *textArray = @[@"作为应届毕业生的我和老板mage 时屏幕宽度返回 320；然后等比例拉伸到大屏。这种情况下对界面不会产生任何影响，等于把小屏完全拉伸。但是建议不要长期出差两天，学到了这些大屏幕一切按照 320 宽度渲染，屏幕宽度返回 320；然后等比例拉伸到大屏。这种情况下对界面不会产生任何影响，等于把小屏完全拉伸。",
+                           @"然后等比例拉伸到大屏。这种情况下对界面不会产生任芊语芊度返回 320这种模式下对界面不会产寻把小屏完全拉伸。",
+                           @"当你的 app 没有提供 3x 的 LaunchImage 时屏幕宽度返回 320；然后等比例拉伸到大屏。这种情况下对界面不会产生任何影响，等于把小屏完全拉伸。但是建议不要长期处于这种模式下。屏幕宽度返回 32拉伸到大屏。这种情况下对界面不会产生任何影响，等于把小屏完全拉伸。但是建议不要长期处于这种模式下。屏幕宽度返回 320；然后等比例拉伸到大屏。这种情况下对界面不会产生任何影响，等于把小屏完全拉伸。但是建议不要长期处于这种模式下。",
+                           @"但是建议不要长期处于这种模式mage 时屏幕宽度返回 320；然后等比例拉伸到大屏。这种情况下对界面不会产生任何影响，等于把小屏完全拉伸。但是建议不要长期下，否则在大屏上会显得字大，内容少，容易遭到用户投诉。",
+                           @"屏幕宽度返回 32比例拉伸到mage 时屏幕宽度返回 320；然后等比例拉伸到大屏。这种情况下对界面不会产生任何影响，等于把小屏完全拉伸。但是建议不要长期大屏。这种情况下对界面不会产生任何影响，等于把小屏完全拉伸。但是建议不要长期处于这种模式下。"
                            ];
     
-    NSArray *commentsArray = @[@"社会主义好！👌👌👌👌",
-                               @"正宗好凉茶，正宗好声音。。。",
+    NSArray *commentsArray = @[@"社会主mage 时屏幕宽度返回 320；然后等比例拉伸到大屏。这种情况下对界面不会产生任何影响，等于把小屏完全拉伸。但是建议不要长期",
+                               @"你咋地你咋地你咋地好声音。。。",
                                @"你好，我好，大家好才是真的好",
                                @"有意思",
                                @"你瞅啥？",
                                @"瞅你咋地？？？！！！",
                                @"hello，看我",
-                               @"曾经在幽幽暗暗反反复复中追问，才知道平平淡淡从从容容才是真",
+                               @"曾经在幽你咋地复中追问，才知道平平淡淡从从容容才是真",
                                @"人艰不拆",
                                @"咯咯哒",
-                               @"呵呵~~~~~~~~",
+                               @"呵呵你咋地~~~",
                                @"我勒个去，啥世道啊",
-                               @"真有意思啊你💢💢💢"];
+                               @"真有意你咋地你💢💢💢"];
     
     NSArray *picImageNamesArray = @[ @"pic0.jpg",
                                      @"pic1.jpg",
@@ -181,7 +186,7 @@ static CGFloat textFieldH = 40;
     _textField = [UITextField new];
     _textField.returnKeyType = UIReturnKeyDone;
     _textField.delegate = self;
-    _textField.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.8].CGColor;
+    _textField.layer.borderColor = [[UIColor redColor] colorWithAlphaComponent:0.8].CGColor;
     _textField.layer.borderWidth = 1;
     
     //为textfield添加背景颜色 字体颜色的设置 还有block设置 , 在block中改变它的键盘样式 (当然背景颜色和字体颜色也可以直接在block中写)
@@ -221,7 +226,7 @@ static CGFloat textFieldH = 40;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MomentCell *cell = [MomentCell cellWithTableView:tableView];
     cell.indexPath = indexPath;
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     __weak typeof(self) weakSelf = self;
     if (!cell.moreButtonClickedBlock) {
         [cell setMoreButtonClickedBlock:^(NSIndexPath *indexPath) {
@@ -247,17 +252,17 @@ static CGFloat textFieldH = 40;
     [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
     
     ///////////////////////////////////////////////////////////////////////
-    
-    cell.moment = self.dataArray[indexPath.row];
+    MomentModel *model = self.dataArray[indexPath.row];
+    cell.moment = model;
     return cell;
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    // >>>>>>>>>>>>>>>>>>>>> * cell自适应 * >>>>>>>>>>>>>>>>>>>>>>>>
-//    id model = self.dataArray[indexPath.row];
-//    return [self.tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[MomentCell class] contentViewWidth:[self cellContentViewWith]];
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // >>>>>>>>>>>>>>>>>>>>> * cell自适应 * >>>>>>>>>>>>>>>>>>>>>>>>
+    id model = self.dataArray[indexPath.row];
+    return [self.tableView cellHeightForIndexPath:indexPath model:model keyPath:@"moment" cellClass:[MomentCell class] contentViewWidth:[self cellContentViewWith]];
+}
 
 - (void)adjustTableViewToFitKeyboardWithRect:(CGRect)rect
 {
@@ -367,7 +372,7 @@ static CGFloat textFieldH = 40;
         model.commentArray = [temp copy];
         [self.tableView reloadRowsAtIndexPaths:@[_currentEditingIndexthPath] withRowAnimation:UITableViewRowAnimationNone];
         _textField.text = @"";
-        _textField.placeholder = nil;
+        _textField.placeholder = @"请输入评论的文字!";
         
         return YES;
     }

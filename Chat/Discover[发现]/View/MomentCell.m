@@ -11,7 +11,7 @@
 #import "MomentModel.h"
 #import "PhotoContainerView.h"
 #import "CommentView.h"
-#import "LiveMenu.h"
+#import "LikeMenu.h"
 #import "UIView+SDAutoLayout.h"
 
 const CGFloat contentLabelFontSize = 15;
@@ -38,7 +38,7 @@ NSString *const kCellLikeButtonClickedNotification = @"CellLikeButtonClickedNoti
 /// 评论的 view
 @property (weak, nonatomic) CommentView *commentView;
 /// 更多操作
-@property (weak, nonatomic)  LiveMenu *likeMenu;
+@property (weak, nonatomic)  LikeMenu *likeMenu;
 
 @end
 
@@ -79,8 +79,13 @@ NSString *const kCellLikeButtonClickedNotification = @"CellLikeButtonClickedNoti
     UILabel *desc = [[UILabel alloc] init];
     desc.font = [UIFont systemFontOfSize:contentLabelFontSize];
     desc.numberOfLines = 0;
+    desc.backgroundColor = [UIColor redColor];
     self.descLabel = desc;
     [self.contentView addSubview:self.descLabel];
+    
+    if (maxContentLabelHeight == 0) {
+        maxContentLabelHeight = self.descLabel.font.lineHeight * 3;
+    }
     
     UILabel *time = [[UILabel alloc] init];
     time.font = [UIFont systemFontOfSize:13];
@@ -89,13 +94,14 @@ NSString *const kCellLikeButtonClickedNotification = @"CellLikeButtonClickedNoti
     
     PhotoContainerView *picture = [[PhotoContainerView alloc] init];
     self.pictures = picture;
+    picture.backgroundColor = [UIColor yellowColor];
     [self.contentView addSubview:self.pictures];
     
     CommentView *commentView = [[CommentView alloc] init];
     self.commentView = commentView;
     [self.contentView addSubview:self.commentView];
     
-    LiveMenu *like = [[LiveMenu alloc] init];
+    LikeMenu *like = [[LikeMenu alloc] init];
     self.likeMenu = like;
     [self.contentView addSubview:self.likeMenu];
     __weak typeof(self) weakSelf = self;
@@ -115,6 +121,7 @@ NSString *const kCellLikeButtonClickedNotification = @"CellLikeButtonClickedNoti
     [more setTitleColor:[UIColor colorWithRed:92/255.0 green:140/255.0 blue:193/255.0 alpha:1.0] forState:UIControlStateNormal];
     [more addTarget:self action:@selector(moreButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     more.titleLabel.font = [UIFont systemFontOfSize:14];
+    more.backgroundColor = [UIColor purpleColor];
     self.moreBtn = more;
     [self.contentView addSubview:self.moreBtn];
     
@@ -133,24 +140,23 @@ NSString *const kCellLikeButtonClickedNotification = @"CellLikeButtonClickedNoti
     }];
     
     [self.nickLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.iconBtn);
+        make.top.equalTo(self.contentView).offset(margin);
         make.left.equalTo(self.iconBtn.mas_right).offset(margin);
     }];
     
+    CGFloat contentW = [UIScreen mainScreen].bounds.size.width - 70;
     [self.descLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.iconBtn.mas_bottom).offset(margin);
-        make.left.equalTo(self.nickLabel.mas_left);
+        make.top.equalTo(self.nickLabel.mas_bottom).offset(margin);
+        make.left.equalTo(self.iconBtn.mas_right).offset(margin);
+        make.width.equalTo(@(contentW));
     }];
     
     [self.moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.descLabel.mas_left);
+        make.left.equalTo(self.iconBtn.mas_right).offset(margin);
         make.top.equalTo(self.descLabel.mas_bottom).offset(margin);
     }];
     
-    [self.pictures mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.moreBtn.mas_left);
-        make.top.equalTo(self.moreBtn.mas_bottom).offset(margin);
-    }];
+    self.pictures.sd_layout.leftEqualToView(self.descLabel);
     
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.pictures.mas_left);
@@ -158,11 +164,21 @@ NSString *const kCellLikeButtonClickedNotification = @"CellLikeButtonClickedNoti
     }];
     
     [self.commentBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.pictures.mas_right);
+        make.right.equalTo(self.descLabel.mas_right);
         make.top.equalTo(self.pictures.mas_bottom).offset(margin);
     }];
     
+    self.commentView.sd_layout
+    .leftEqualToView(self.descLabel)
+    .rightSpaceToView(self.contentView, margin)
+    .topSpaceToView(self.timeLabel, margin);
     
+    self.likeMenu.sd_layout
+    .rightSpaceToView(self.commentBtn, 0)
+    .heightIs(36)
+    .centerYEqualToView(self.commentBtn)
+    .widthIs(0);
+
 }
 
 - (void)moreButtonClicked{
@@ -183,7 +199,7 @@ NSString *const kCellLikeButtonClickedNotification = @"CellLikeButtonClickedNoti
         self.likeMenu.show = NO;
     }
 }
-- (void)setMoent:(MomentModel *)moment
+- (void)setMoment:(MomentModel *)moment
 {
     _moment = moment;
     
@@ -193,16 +209,20 @@ NSString *const kCellLikeButtonClickedNotification = @"CellLikeButtonClickedNoti
     self.descLabel.text = moment.msgContent;
     self.timeLabel.text = @"1分钟前";
     self.pictures.picPathStringsArray = moment.picNamesArray;
-    self.pictures.backgroundColor = [UIColor redColor];
+    
+    [self.commentView setupWithLikeItemsArray:moment.likeArray commentItemsArray:moment.commentArray];
     
     if (moment.shouldShowMoreButton) {
         [self.moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.height.equalTo(@20);
+            make.width.equalTo(@40);
+            make.height.equalTo(@25);
         }];
         self.moreBtn.hidden = NO;
         if (moment.isOpening) {
+            CGFloat contentW = [UIScreen mainScreen].bounds.size.width - 70;
+            CGRect textRect = [self.descLabel.text boundingRectWithSize:CGSizeMake(contentW, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:contentLabelFontSize]} context:nil];
             [self.descLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.height.equalTo(@(MAXFLOAT));
+                make.height.equalTo(@(textRect.size.height));
             }];
             [self.moreBtn setTitle:@"收起" forState:UIControlStateNormal];
         }else{
@@ -220,8 +240,9 @@ NSString *const kCellLikeButtonClickedNotification = @"CellLikeButtonClickedNoti
     
     CGFloat picContainerTopMargin = 0;
     if (moment.picNamesArray.count) {
-        picContainerTopMargin = 10;
+        picContainerTopMargin = 18;
     }
+    self.pictures.sd_layout.topSpaceToView(self.moreBtn, picContainerTopMargin);
     
     UIView *bottomView;
     
@@ -232,6 +253,11 @@ NSString *const kCellLikeButtonClickedNotification = @"CellLikeButtonClickedNoti
     }
     
     [self setupAutoHeightWithBottomView:bottomView bottomMargin:15];
+}
+
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key
+{
+
 }
 
 - (void)setFrame:(CGRect)frame

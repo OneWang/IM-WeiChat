@@ -8,11 +8,11 @@
 
 #define Color(r, g, b, a) [UIColor colorWithRed:(r / 255.0) green:(g / 255.0) blue:(b / 255.0) alpha:a]
 
-#import "LiveMenu.h"
+#import "LikeMenu.h"
 #import "Masonry.h"
 #import "UIView+SDAutoLayout.h"
 
-@interface LiveMenu ()
+@interface LikeMenu ()
 
 /// 点赞按钮
 @property (strong, nonatomic)  UIButton *likeBtn;
@@ -21,7 +21,7 @@
 
 @end
 
-@implementation LiveMenu
+@implementation LikeMenu
 
 - (instancetype)initWithFrame:(CGRect)frame
 {

@@ -113,10 +113,8 @@
     [self.messageLabel addSubview:self.photoView];
 //    [self.messageLabel addSubview:self.chatImgView];
     
-    NSLog(@"%@",NSStringFromCGRect(thumbnailFrame));
     //设置图片控件为缩略图的
 //    self.photoView.frame = thumbnailFrame;
-    self.messageLabel.backgroundColor = [UIColor blueColor];
 //    self.chatImgView.frame = thumbnailFrame;
     [self.photoView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.messageLabel);

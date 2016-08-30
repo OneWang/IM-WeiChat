@@ -44,14 +44,13 @@
 - (void)setupViews
 {
     _bgImageView = [UIImageView new];
-    UIImage *bgImage = [[[UIImage imageNamed:@"LikeCmtBg"] stretchableImageWithLeftCapWidth:40 topCapHeight:30] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    UIImage *bgImage = [[[UIImage imageNamed:@"LikeCmtBg"] stretchableImageWithLeftCapWidth:40 topCapHeight:30] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     _bgImageView.image = bgImage;
-    _bgImageView.backgroundColor = [UIColor clearColor];
     [self addSubview:_bgImageView];
     
     _likeLabel = [MLLinkLabel new];
     _likeLabel.font = [UIFont systemFontOfSize:14];
-    _likeLabel.linkTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithRed:92/255.0 green:140/255.0 blue:193/255.0 alpha:1.0]};
+    _likeLabel.linkTextAttributes = @{NSForegroundColorAttributeName : [UIColor purpleColor]};
     _likeLabel.isAttributedContent = YES;
     [self addSubview:_likeLabel];
     
@@ -89,7 +88,7 @@
     long needsToAddCount = commentItemsArray.count > originalLabelsCount ? (commentItemsArray.count - originalLabelsCount) : 0;
     for (int i = 0; i < needsToAddCount; i++) {
         MLLinkLabel *label = [MLLinkLabel new];
-        UIColor *highLightColor = [UIColor colorWithRed:92/255.0 green:140/255.0 blue:193/255.0 alpha:1.0];
+        UIColor *highLightColor = [UIColor greenColor];
         label.linkTextAttributes = @{NSForegroundColorAttributeName : highLightColor};
 //        label.lee_theme
 //        .LeeAddTextColor(DAY , [UIColor blackColor])
@@ -238,7 +237,7 @@
 {
     NSString *text = model.userName;
     NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:text];
-    UIColor *highLightColor = [UIColor blueColor];
+    UIColor *highLightColor = [UIColor cyanColor];
     [attString setAttributes:@{NSForegroundColorAttributeName : highLightColor, NSLinkAttributeName : model.userId} range:[text rangeOfString:model.userName]];
     
     return attString;
@@ -249,6 +248,6 @@
 
 - (void)didClickLink:(MLLink *)link linkText:(NSString *)linkText linkLabel:(MLLinkLabel *)linkLabel
 {
-    NSLog(@"%@", link.linkValue);
+    NSLog(@"MLLinkLabelDelegate====%@", link.linkValue);
 }
 @end

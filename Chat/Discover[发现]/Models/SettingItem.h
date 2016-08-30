@@ -38,7 +38,7 @@ typedef void(^SettingItemOption)(void);
  */
 @property (nonatomic,copy) NSString *descTitle;
 
-/** image */
+/** 右侧图片 */
 @property (strong, nonatomic) UIImage *image;
 
 /**

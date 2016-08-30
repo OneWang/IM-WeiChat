@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LiveMenu : UIView
+@interface LikeMenu : UIView
 ///是否显示
 @property (nonatomic, assign, getter = isShowing) BOOL show;
 ///点击点赞按钮

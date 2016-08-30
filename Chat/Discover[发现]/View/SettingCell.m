@@ -9,6 +9,7 @@
 #import "SettingCell.h"
 #import "SettingItem.h"
 #import "Masonry.h"
+#import "UIView+Extension.h"
 
 #define KScreen_Width [UIScreen mainScreen].bounds.size.width
 #define KScreen_Hight [UIScreen mainScreen].bounds.size.height
@@ -39,8 +40,10 @@
 - (UIImageView *)iconView
 {
     if (!_iconView) {
-        _iconView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 50, 50)];
+        _iconView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 25, 25)];
         _iconView.layer.cornerRadius = 5;
+        _iconView.layer.borderColor = [UIColor redColor].CGColor;
+        _iconView.layer.borderWidth = 2;
         _iconView.layer.masksToBounds = YES;
         _iconView.backgroundColor = [UIColor redColor];
     }
@@ -117,12 +120,26 @@
 - (void)setupData{
     if (self.item.icon) {
         self.imageView.image = [UIImage imageNamed:self.item.icon];
+        self.imageView.layer.cornerRadius = 5;
+        self.imageView.layer.borderColor = [UIColor redColor].CGColor;
+        self.imageView.layer.borderWidth = 2;
+        self.imageView.layer.masksToBounds = YES;
+        self.imageView.backgroundColor = [UIColor redColor];
     }
     self.textLabel.text = self.item.title;
     self.detailTextLabel.text = self.item.subtitle;
     self.label.text = self.item.descTitle;
     self.iconView.image = self.item.image;
 }
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    self.imageView.frame = CGRectMake(16, 9, 25, 25);
+    self.textLabel.x = 56;
+}
+
 
 - (void)setupRightContent{
     self.accessoryView = self.rightView;

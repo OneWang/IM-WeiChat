@@ -84,7 +84,6 @@
     UIViewController * vc = [[item.destVcClass alloc] init];
     if (item.option) {//block 有值,在 block 中执行一段特定操作
         item.option();
-        NSLog(@"option");
     }else {
         if ([vc isKindOfClass:[UIViewController class]]){
             [self.navigationController pushViewController:vc animated:YES];
