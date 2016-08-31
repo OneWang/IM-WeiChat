@@ -67,6 +67,7 @@ NSString *const kCellLikeButtonClickedNotification = @"CellLikeButtonClickedNoti
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveOperationButtonClickedNotification:) name:kCellLikeButtonClickedNotification object:nil];
     
     UIButton *icon = [[UIButton alloc] init];
+    [icon addTarget:self action:@selector(clickIcon) forControlEvents:UIControlEventTouchUpInside];
     self.iconBtn = icon;
 //    [self.contentView addSubview:self.iconBtn];
     
@@ -195,6 +196,12 @@ NSString *const kCellLikeButtonClickedNotification = @"CellLikeButtonClickedNoti
 - (void)moreButtonClicked{
     if (self.moreButtonClickedBlock) {
         self.moreButtonClickedBlock(self.indexPath);
+    }
+}
+
+- (void)clickIcon{
+    if (self.clickIconBtnBlock) {
+        self.clickIconBtnBlock(self.indexPath);
     }
 }
 

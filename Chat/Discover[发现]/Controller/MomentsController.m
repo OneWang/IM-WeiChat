@@ -291,11 +291,17 @@ static CGFloat textFieldH = 40;
         
         [cell setDidClickCommentLabelBlock:^(NSString *commentId, CGRect rectInWindow, NSIndexPath *indexPath) {
             weakSelf.textField.placeholder = [NSString stringWithFormat:@"  回复：%@", commentId];
+            NSLog(@"============%@",commentId);
             weakSelf.currentEditingIndexthPath = indexPath;
             [weakSelf.textField becomeFirstResponder];
             weakSelf.isReplayingComment = YES;
             weakSelf.commentToUser = commentId;
             [weakSelf adjustTableViewToFitKeyboardWithRect:rectInWindow];
+        }];
+        
+        [cell setClickIconBtnBlock:^(NSIndexPath *indexPath) {
+             MomentModel *model = weakSelf.dataArray[indexPath.row];
+            NSLog(@"点击了%@的头像",model.name);
         }];
         
         cell.delegate = self;
