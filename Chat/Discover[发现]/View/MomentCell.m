@@ -68,20 +68,20 @@ NSString *const kCellLikeButtonClickedNotification = @"CellLikeButtonClickedNoti
     
     UIButton *icon = [[UIButton alloc] init];
     self.iconBtn = icon;
-    [self.contentView addSubview:self.iconBtn];
+//    [self.contentView addSubview:self.iconBtn];
     
     UILabel *nick = [[UILabel alloc] init];
     nick.textColor = [UIColor colorWithRed:(54 / 255.0) green:(71 / 255.0) blue:(121 / 255.0) alpha:0.9];
     nick.font = [UIFont systemFontOfSize:14];
     self.nickLabel = nick;
-    [self.contentView addSubview:self.nickLabel];
+//    [self.contentView addSubview:self.nickLabel];
     
     UILabel *desc = [[UILabel alloc] init];
     desc.font = [UIFont systemFontOfSize:contentLabelFontSize];
     desc.numberOfLines = 0;
     desc.backgroundColor = [UIColor redColor];
     self.descLabel = desc;
-    [self.contentView addSubview:self.descLabel];
+//    [self.contentView addSubview:self.descLabel];
     
     if (maxContentLabelHeight == 0) {
         maxContentLabelHeight = self.descLabel.font.lineHeight * 3;
@@ -90,20 +90,20 @@ NSString *const kCellLikeButtonClickedNotification = @"CellLikeButtonClickedNoti
     UILabel *time = [[UILabel alloc] init];
     time.font = [UIFont systemFontOfSize:13];
     self.timeLabel = time;
-    [self.contentView addSubview:self.timeLabel];
+//    [self.contentView addSubview:self.timeLabel];
     
     PhotoContainerView *picture = [[PhotoContainerView alloc] init];
     self.pictures = picture;
     picture.backgroundColor = [UIColor yellowColor];
-    [self.contentView addSubview:self.pictures];
+//    [self.contentView addSubview:self.pictures];
     
     CommentView *commentView = [[CommentView alloc] init];
     self.commentView = commentView;
-    [self.contentView addSubview:self.commentView];
+//    [self.contentView addSubview:self.commentView];
     
     LikeMenu *like = [[LikeMenu alloc] init];
     self.likeMenu = like;
-    [self.contentView addSubview:self.likeMenu];
+//    [self.contentView addSubview:self.likeMenu];
     __weak typeof(self) weakSelf = self;
     [self.likeMenu setLikeButtonClickedOperation:^{
         if ([weakSelf.delegate respondsToSelector:@selector(didClickLikeButtonInCell:)]) {
@@ -123,61 +123,72 @@ NSString *const kCellLikeButtonClickedNotification = @"CellLikeButtonClickedNoti
     more.titleLabel.font = [UIFont systemFontOfSize:14];
     more.backgroundColor = [UIColor purpleColor];
     self.moreBtn = more;
-    [self.contentView addSubview:self.moreBtn];
+//    [self.contentView addSubview:self.moreBtn];
     
     UIButton *comment = [[UIButton alloc] init];
     [comment setImage:[UIImage imageNamed:@"AlbumOperateMore"] forState:UIControlStateNormal];
     [comment addTarget:self action:@selector(commentButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     comment.titleLabel.font = [UIFont systemFontOfSize:14];
     self.commentBtn = comment;
-    [self.contentView addSubview:self.commentBtn];
+//    [self.contentView addSubview:self.commentBtn];
+    
+    
+    NSArray *views = @[self.iconBtn,self.nickLabel,self.descLabel,self.pictures,self.moreBtn,self.commentBtn,self.likeMenu,self.commentView,self.timeLabel];
+    
+    [self.contentView sd_addSubviews:views];
     
     CGFloat margin = 8;
     
-    [self.iconBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.equalTo(self.contentView).offset(margin);
-        make.width.height.equalTo(@40);
-    }];
+    self.iconBtn.sd_layout.leftSpaceToView(self.contentView,margin).topSpaceToView(self.contentView,margin + 8).widthIs(40).heightIs(40);
+    
+//    [self.iconBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.top.equalTo(self.contentView).offset(margin);
+//        make.width.height.equalTo(@40);
+//    }];
+    
+//    self.nickLabel.sd_layout.leftSpaceToView(self.iconBtn,margin).topEqualToView(self.iconBtn).heightIs(18);
+//    [self.nickLabel setSingleLineAutoResizeWithMaxWidth:200];
     
     [self.nickLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.contentView).offset(margin);
+        make.top.equalTo(self.contentView).offset(margin + 8);
         make.left.equalTo(self.iconBtn.mas_right).offset(margin);
     }];
     
-    CGFloat contentW = [UIScreen mainScreen].bounds.size.width - 70;
-    [self.descLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.nickLabel.mas_bottom).offset(margin);
-        make.left.equalTo(self.iconBtn.mas_right).offset(margin);
-        make.width.equalTo(@(contentW));
-    }];
+//    CGFloat contentW = [UIScreen mainScreen].bounds.size.width - 70;
+//    [self.descLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.nickLabel.mas_bottom).offset(margin);
+//        make.left.equalTo(self.iconBtn.mas_right).offset(margin);
+//        make.width.equalTo(@(contentW));
+//    }];
     
-    [self.moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.iconBtn.mas_right).offset(margin);
-        make.top.equalTo(self.descLabel.mas_bottom).offset(margin);
-    }];
+    self.descLabel.sd_layout.leftEqualToView(self.nickLabel).topSpaceToView(self.nickLabel,margin).rightSpaceToView(self.contentView,margin).autoHeightRatio(0);
+    
+//    [self.moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self.iconBtn.mas_right).offset(margin);
+//        make.top.equalTo(self.descLabel.mas_bottom).offset(margin);
+//    }];
+    
+    self.moreBtn.sd_layout.leftEqualToView(self.descLabel).topSpaceToView(self.descLabel,0).widthIs(30);
     
     self.pictures.sd_layout.leftEqualToView(self.descLabel);
     
-    [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.pictures.mas_left);
-        make.top.equalTo(self.pictures.mas_bottom).offset(margin);
-    }];
+//    [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self.pictures.mas_left);
+//        make.top.equalTo(self.pictures.mas_bottom).offset(margin);
+//    }];
+    self.timeLabel.sd_layout.leftEqualToView(self.pictures).topSpaceToView(self.pictures,margin).heightIs(15);
+    [self.timeLabel setSingleLineAutoResizeWithMaxWidth:200];
     
-    [self.commentBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.descLabel.mas_right);
-        make.top.equalTo(self.pictures.mas_bottom).offset(margin);
-    }];
+//    [self.commentBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.right.equalTo(self.descLabel.mas_right);
+//        make.top.equalTo(self.pictures.mas_bottom).offset(margin);
+//    }];
     
-    self.commentView.sd_layout
-    .leftEqualToView(self.descLabel)
-    .rightSpaceToView(self.contentView, margin)
-    .topSpaceToView(self.timeLabel, margin);
+    self.commentBtn.sd_layout.rightSpaceToView(self.contentView,margin).centerYEqualToView(self.timeLabel).heightIs(25).widthIs(25);
     
-    self.likeMenu.sd_layout
-    .rightSpaceToView(self.commentBtn, 0)
-    .heightIs(36)
-    .centerYEqualToView(self.commentBtn)
-    .widthIs(0);
+    self.commentView.sd_layout.leftEqualToView(self.descLabel).rightSpaceToView(self.contentView, margin).topSpaceToView(self.timeLabel, margin);
+    
+    self.likeMenu.sd_layout.rightSpaceToView(self.commentBtn, 0).heightIs(36).centerYEqualToView(self.commentBtn).widthIs(0);
 
 }
 
@@ -212,29 +223,33 @@ NSString *const kCellLikeButtonClickedNotification = @"CellLikeButtonClickedNoti
     
     [self.commentView setupWithLikeItemsArray:moment.likeArray commentItemsArray:moment.commentArray];
     
-    if (moment.shouldShowMoreButton) {
-        [self.moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.equalTo(@40);
-            make.height.equalTo(@25);
-        }];
+    if (moment.shouldShowMoreButton) {// 如果文字高度超过60
+        self.moreBtn.sd_layout.heightIs(20);
+//        [self.moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.width.equalTo(@40);
+//            make.height.equalTo(@25);
+//        }];
         self.moreBtn.hidden = NO;
-        if (moment.isOpening) {
-            CGFloat contentW = [UIScreen mainScreen].bounds.size.width - 70;
-            CGRect textRect = [self.descLabel.text boundingRectWithSize:CGSizeMake(contentW, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:contentLabelFontSize]} context:nil];
-            [self.descLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.height.equalTo(@(textRect.size.height));
-            }];
+        if (moment.isOpening) {// 如果需要展开
+//            CGFloat contentW = [UIScreen mainScreen].bounds.size.width - 70;
+//            CGRect textRect = [self.descLabel.text boundingRectWithSize:CGSizeMake(contentW, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:contentLabelFontSize]} context:nil];
+//            [self.descLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//                make.height.equalTo(@(textRect.size.height));
+//            }];
+            self.descLabel.sd_layout.maxHeightIs(MAXFLOAT);
             [self.moreBtn setTitle:@"收起" forState:UIControlStateNormal];
         }else{
-            [self.descLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.height.equalTo(@(maxContentLabelHeight));
-            }];
+//            [self.descLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//                make.height.equalTo(@(maxContentLabelHeight));
+//            }];
+            self.descLabel.sd_layout.maxHeightIs(maxContentLabelHeight);
             [self.moreBtn setTitle:@"全文" forState:UIControlStateNormal];
         }
     }else{
-        [self.moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.height.equalTo(@0);
-        }];
+//        [self.moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.width.height.equalTo(@0);
+//        }];
+        self.moreBtn.sd_layout.heightIs(0);
         self.moreBtn.hidden = YES;
     }
     

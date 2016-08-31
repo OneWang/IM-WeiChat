@@ -16,6 +16,9 @@
 #import "UITableView+SDAutoTableViewCellHeight.h"
 #import "LikeModel.h"
 #import "CommentModel.h"
+#import "RefreshFooter.h"
+#import "RefreshHeader.h"
+#import "TableHeaderView.h"
 
 @interface MomentsController ()<MomentModelDelegate,UITextFieldDelegate>
 /// 数据源数组
@@ -33,6 +36,9 @@ static CGFloat textFieldH = 40;
 @implementation MomentsController
 
 {
+    RefreshFooter *_refreshFooter;
+    RefreshHeader *_refreshHeader;
+    CGFloat _lastScrollViewOffsetY;
     CGFloat _totalKeybordHeight;
 }
 
@@ -61,6 +67,54 @@ static CGFloat textFieldH = 40;
     [self setupTextField];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardNotification:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    
+    _refreshFooter = [RefreshFooter refreshFooterWithRefreshingText:@"正在加载数据..."];
+    __weak typeof(self) weakSelf = self;
+    __weak typeof(_refreshFooter) weakRefreshFooter = _refreshFooter;
+    [_refreshFooter addToScrollView:self.tableView refreshOperation:^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf.dataArray addObjectsFromArray:[weakSelf creatModelsWithCount:10]];
+            
+            /**
+             [weakSelf.tableView reloadDataWithExistedHeightCache]
+             作用等同于
+             [weakSelf.tableView reloadData]
+             只是“reloadDataWithExistedHeightCache”刷新tableView但不清空之前已经计算好的高度缓存，用于直接将新数据拼接在旧数据之后的tableView刷新
+             */
+            [weakSelf.tableView reloadDataWithExistedHeightCache];
+            
+            [weakRefreshFooter endRefreshing];
+        });
+    }];
+    
+    TableHeaderView *headerView = [TableHeaderView new];
+    headerView.frame = CGRectMake(0, 0, 0, 260);
+    self.tableView.tableHeaderView = headerView;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    if (!_refreshHeader.superview) {
+        
+        _refreshHeader = [RefreshHeader refreshHeaderWithCenter:CGPointMake(40, 45)];
+        _refreshHeader.scrollView = self.tableView;
+        __weak typeof(_refreshHeader) weakHeader = _refreshHeader;
+        __weak typeof(self) weakSelf = self;
+        [_refreshHeader setRefreshingBlock:^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                weakSelf.dataArray = [[weakSelf creatModelsWithCount:10] mutableCopy];
+                [weakHeader endRefreshing];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [weakSelf.tableView reloadData];
+                });
+            });
+        }];
+        [self.tableView.superview addSubview:_refreshHeader];
+    } else {
+        [self.tableView.superview bringSubviewToFront:_refreshHeader];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
