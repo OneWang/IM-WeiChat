@@ -85,7 +85,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Yae-wX-ezE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="JgU-Mx-yIl">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入要添加好友的名称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KxD-cZ-rsj">
@@ -136,12 +136,12 @@
             <objects>
                 <tableViewController id="Tcl-0k-pGu" userLabel="AddressBook" customClass="AddressbookViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="64" sectionHeaderHeight="18" sectionFooterHeight="18" id="NZK-bH-Lnm">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="BubbyCell" rowHeight="30" id="N0I-QH-pob">
-                                <rect key="frame" x="0.0" y="113.5" width="375" height="30"/>
+                                <rect key="frame" x="0.0" y="49.5" width="375" height="30"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="N0I-QH-pob" id="fZB-KF-IqT">
                                     <rect key="frame" x="0.0" y="0.0" width="342" height="29.5"/>
@@ -225,11 +225,11 @@
                         <viewControllerLayoutGuide type="bottom" id="wsp-eY-InE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="a5Z-Rn-Jnf">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MGW-uw-6MB" userLabel="ChatInputToolBar">
-                                <rect key="frame" x="0.0" y="621" width="375" height="46"/>
+                                <rect key="frame" x="0.0" y="557" width="375" height="46"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tUQ-UT-MYw" userLabel="face">
                                         <rect key="frame" x="299" y="8" width="30" height="30"/>
@@ -318,7 +318,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="76" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3DM-UZ-6SE">
-                                <rect key="frame" x="0.0" y="64" width="375" height="557"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="557"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReceiveCell" rowHeight="76" id="Nid-UT-VOR" userLabel="ReceiveCell" customClass="ChatCell">
@@ -413,7 +413,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qoU-nh-9FL">
-                                                    <rect key="frame" x="163.5" y="3" width="42" height="21"/>
+                                                    <rect key="frame" x="163" y="3" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -461,7 +461,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iAb-Jw-iIm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="802.5" y="19.5"/>
+            <point key="canvasLocation" x="818.5" y="42.5"/>
         </scene>
         <!--AddressBook-->
         <scene sceneID="A6x-cf-xxW">
@@ -469,7 +469,7 @@
                 <navigationController id="M4h-UE-wDd" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="AddressBook" image="tabbar_contacts" selectedImage="tabbar_contactsHL" id="qtp-rx-zwr"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="X2j-R0-yk3">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="X2j-R0-yk3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -479,7 +479,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wsG-dG-QJ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-311.5" y="-212.5"/>
+            <point key="canvasLocation" x="-354.5" y="-231.5"/>
         </scene>
         <!--Setting-->
         <scene sceneID="OsU-qU-IR1">

@@ -114,16 +114,16 @@
 {
     //进入聊天控制器
     //从storyboard加载聊天控制器
-    ChatViewController *chatVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"chatpage"];
+    ChatViewController *chatVc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"chatpage"];
     
     //会话
     EMConversation *conversation = self.conversations[indexPath.row];
     EMBuddy *buddy = [EMBuddy buddyWithUsername:conversation.chatter];
     //设置为好友属性
-    chatVC.buddy = buddy;
-    chatVC.friendName = buddy.username;
+//    chatVc.buddy = buddy;
+    chatVc.friendName = buddy.username;
     //展现聊天界面
-    [self.navigationController pushViewController:chatVC animated:YES];
+    [self.navigationController pushViewController:chatVc animated:YES];
 }
 
 

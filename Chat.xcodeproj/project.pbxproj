@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A073E311D78319E00BD20FF /* UIViewController+BackButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A073E301D78319E00BD20FF /* UIViewController+BackButtonHandler.m */; };
 		0A2273A71D6DA1B700D5D1C9 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A22738F1D6DA1B700D5D1C9 /* MASCompositeConstraint.m */; };
 		0A2273A81D6DA1B700D5D1C9 /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2273921D6DA1B700D5D1C9 /* MASConstraint.m */; };
 		0A2273A91D6DA1B700D5D1C9 /* MASConstraintMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2273941D6DA1B700D5D1C9 /* MASConstraintMaker.m */; };
@@ -228,6 +229,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A073E2F1D78319E00BD20FF /* UIViewController+BackButtonHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BackButtonHandler.h"; sourceTree = "<group>"; };
+		0A073E301D78319E00BD20FF /* UIViewController+BackButtonHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BackButtonHandler.m"; sourceTree = "<group>"; };
 		0A22738E1D6DA1B700D5D1C9 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		0A22738F1D6DA1B700D5D1C9 /* MASCompositeConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASCompositeConstraint.m; sourceTree = "<group>"; };
 		0A2273901D6DA1B700D5D1C9 /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
@@ -1551,6 +1554,8 @@
 		0AC89E611CD9EE5B00AA53CF /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				0A073E2F1D78319E00BD20FF /* UIViewController+BackButtonHandler.h */,
+				0A073E301D78319E00BD20FF /* UIViewController+BackButtonHandler.m */,
 				0A9269161D4F2E3800A3DA50 /* UIViewExt.h */,
 				0A9269171D4F2E3800A3DA50 /* UIViewExt.m */,
 				0AC89E621CD9EE7700AA53CF /* AudioPlayTool.h */,
@@ -2122,6 +2127,7 @@
 				0A5481901D704AA30033B695 /* TTTAttributedLabel.m in Sources */,
 				0ACDE6671D6EED7400B2B004 /* MomentsController.m in Sources */,
 				0A5481891D704AA30033B695 /* NSAttributedString+MLExpression.m in Sources */,
+				0A073E311D78319E00BD20FF /* UIViewController+BackButtonHandler.m in Sources */,
 				0AB22C461CD8467300A9DE3A /* AppDelegate.m in Sources */,
 				0ACDE66D1D6F043100B2B004 /* ConversationCell.m in Sources */,
 				0A2273E11D6DA5A200D5D1C9 /* MJRefreshBackFooter.m in Sources */,

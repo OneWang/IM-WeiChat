@@ -16,6 +16,7 @@
 #import "UIView+Extension.h"
 #import "FunctionView.h"
 #import "UIViewExt.h"
+#import "UIViewController+BackButtonHandler.h"
 
 #import "EMCDDeviceManager.h"
 #import "PhotoContainerView.h"
@@ -83,7 +84,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     //设置背景颜色
     self.tableView.backgroundColor = [UIColor colorWithRed:246/255.0 green:246/255.0 blue:246/255.0 alpha:1.0];
     
@@ -103,6 +103,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kbWillShow:) name:UIKeyboardWillShowNotification object:nil];
     //2.监听键盘的退出事件
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kbWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+//返回按钮被点击的时候
+- (BOOL)navigationShouldPopOnBackButton
+{
+    return YES;
 }
 
 /** 添加更多的功能 */
@@ -183,6 +189,8 @@
         [self.view layoutIfNeeded];
     }];
 }
+
+
 
 #pragma mark 键盘隐藏时会触发的方法
 - (void)kbWillHide:(NSNotification *)notif{

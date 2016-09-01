@@ -21,13 +21,6 @@
 @implementation DiscoverViewController
 
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    self.hidesBottomBarWhenPushed = YES;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
