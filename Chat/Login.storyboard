@@ -34,32 +34,51 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="wang1" borderStyle="roundedRect" placeholder="请输入账号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A3Z-I2-eXB">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="wang1" borderStyle="roundedRect" placeholder="请输入账号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A3Z-I2-eXB">
                                 <rect key="frame" x="58" y="125" width="258" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sKt-Zf-nBb">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sKt-Zf-nBb">
                                 <rect key="frame" x="58" y="273" width="64" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="kCg-kx-eZf"/>
+                                </constraints>
                                 <state key="normal" title="Register"/>
                                 <connections>
                                     <action selector="registerAction:" destination="Wri-CO-MPV" eventType="touchUpInside" id="YfL-Bo-J8G"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BSa-z8-Wd5">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BSa-z8-Wd5">
                                 <rect key="frame" x="252" y="273" width="64" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="49Q-yf-MSO"/>
+                                </constraints>
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="loginAction:" destination="Wri-CO-MPV" eventType="touchUpInside" id="2YF-Og-D94"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456" borderStyle="roundedRect" placeholder="请输入密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sdm-tD-Tez">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456" borderStyle="roundedRect" placeholder="请输入密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sdm-tD-Tez">
                                 <rect key="frame" x="58" y="191" width="258" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="A3Z-I2-eXB" firstAttribute="centerX" secondItem="cil-wt-0Yy" secondAttribute="centerX" id="65V-cg-AjD"/>
+                            <constraint firstItem="BSa-z8-Wd5" firstAttribute="trailing" secondItem="sdm-tD-Tez" secondAttribute="trailing" id="GWn-hq-ArV"/>
+                            <constraint firstItem="sdm-tD-Tez" firstAttribute="leading" secondItem="cil-wt-0Yy" secondAttribute="leading" constant="58" id="LDw-pT-gdc"/>
+                            <constraint firstAttribute="trailing" secondItem="sdm-tD-Tez" secondAttribute="trailing" constant="59" id="WEV-cA-g4Q"/>
+                            <constraint firstItem="sKt-Zf-nBb" firstAttribute="top" secondItem="sdm-tD-Tez" secondAttribute="bottom" constant="52" id="cFK-DZ-gbW"/>
+                            <constraint firstAttribute="trailing" secondItem="A3Z-I2-eXB" secondAttribute="trailing" constant="59" id="fcs-Ia-UT2"/>
+                            <constraint firstItem="BSa-z8-Wd5" firstAttribute="top" secondItem="sdm-tD-Tez" secondAttribute="bottom" constant="52" id="h89-di-dme"/>
+                            <constraint firstItem="A3Z-I2-eXB" firstAttribute="leading" secondItem="cil-wt-0Yy" secondAttribute="leading" constant="58" id="jGL-VG-NH7"/>
+                            <constraint firstItem="sdm-tD-Tez" firstAttribute="top" secondItem="A3Z-I2-eXB" secondAttribute="bottom" constant="36" id="jQ4-I0-awY"/>
+                            <constraint firstItem="sKt-Zf-nBb" firstAttribute="leading" secondItem="sdm-tD-Tez" secondAttribute="leading" id="o02-SP-L3Q"/>
+                            <constraint firstItem="A3Z-I2-eXB" firstAttribute="top" secondItem="HMC-n4-88e" secondAttribute="bottom" constant="61" id="wdD-wl-kTz"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="登录界面" id="LFi-Cl-lu6"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
