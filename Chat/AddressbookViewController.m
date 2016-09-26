@@ -15,12 +15,12 @@
 #import "ApplyViewController.h"
 #import "ContactResultController.h"
 
-@interface AddressbookViewController ()<EMChatManagerDelegate,UISearchBarDelegate>
+@interface AddressbookViewController ()<EMChatManagerDelegate,UISearchBarDelegate,UISearchControllerDelegate,UISearchResultsUpdating>
 
 ///搜索框
-@property (nonatomic, strong) UISearchController *searchController;
+@property (nonatomic, strong) UISearchBar *searchBar;
 
-//好友列表数据源
+///好友列表数据源
 @property (strong, nonatomic) NSMutableArray *buddyList;
 
 // 功能列表
@@ -29,6 +29,9 @@
 @property (nonatomic, strong) NSMutableArray *data;
 /** 拼音首字母列表 */
 @property (nonatomic, strong) NSMutableArray *section;
+
+@property (strong, nonatomic) IBOutlet UITableView *mainTableView;
+
 
 @end
 
@@ -75,6 +78,9 @@
     //添加聊天管理器的代理
     [[EaseMob sharedInstance].chatManager addDelegate:self delegateQueue:nil];
     
+//    self.navigationController.navigationBar.hidden = YES;
+//    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64) style:UITableViewStyleGrouped] ;
+//    self.tableView.backgroundColor = [UIColor redColor];
     
 #warning 好友列表buddyList需要在自动登录成功后才有值
     // 获取好友列表的数据
@@ -98,42 +104,84 @@
 //    }
 }
 
-- (UISearchController *)createSearchController{
-    self.searchController = [[UISearchController alloc] initWithSearchResultsController:[ContactResultController new]];
-    self.searchController.view.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.95];
-    
-    UISearchBar *bar = self.searchController.searchBar;
+//- (UISearchController *)createSearchController{
+//    self.searchController = [[UISearchController alloc] initWithSearchResultsController:[ContactResultController new]];
+//    self.searchController.view.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.95];
+//    self.searchController.delegate = self;
+//    self.searchController.searchResultsUpdater = self;
+//    
+//    UISearchBar *bar = self.searchController.searchBar;
+//    bar.barStyle = UIBarStyleDefault;
+//    bar.translucent = YES;
+//    bar.barTintColor = [UIColor lightGrayColor];
+//    bar.tintColor = [UIColor colorWithRed:0 green:(190 / 255.0) blue:(12 / 255.0) alpha:1];
+//    UIImageView *view = [[[bar.subviews objectAtIndex:0] subviews] firstObject];
+//    view.layer.borderColor = [UIColor whiteColor].CGColor;
+//    view.layer.borderWidth = 1;
+//    
+//    bar.showsBookmarkButton = YES;
+//    [bar setImage:[UIImage imageNamed:@"VoiceSearchStartBtn"] forSearchBarIcon:UISearchBarIconBookmark state:UIControlStateNormal];
+//    bar.delegate = self;
+//    CGRect rect = bar.frame;
+//    rect.size.height = 44;
+//    bar.frame = rect;
+//    self.tableView.sectionIndexColor = [UIColor lightGrayColor];
+//    self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
+//    return self.searchController;
+//}
+
+- (UISearchBar *)createSearchBar{
+    UISearchBar *bar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
     bar.barStyle = UIBarStyleDefault;
     bar.translucent = YES;
     bar.barTintColor = [UIColor lightGrayColor];
     bar.tintColor = [UIColor colorWithRed:0 green:(190 / 255.0) blue:(12 / 255.0) alpha:1];
     UIImageView *view = [[[bar.subviews objectAtIndex:0] subviews] firstObject];
-    view.layer.borderColor = [UIColor blueColor].CGColor;
+    view.layer.borderColor = [UIColor whiteColor].CGColor;
     view.layer.borderWidth = 1;
-    
-    bar.layer.borderColor = [UIColor redColor].CGColor;
-    
+
     bar.showsBookmarkButton = YES;
     [bar setImage:[UIImage imageNamed:@"VoiceSearchStartBtn"] forSearchBarIcon:UISearchBarIconBookmark state:UIControlStateNormal];
     bar.delegate = self;
+    bar.placeholder = @"请输入搜索信息";
     CGRect rect = bar.frame;
     rect.size.height = 44;
     bar.frame = rect;
+    self.searchBar = bar;
     self.tableView.sectionIndexColor = [UIColor lightGrayColor];
     self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
-    return self.searchController;
+    return self.searchBar;
+
 }
 
 #pragma mark - UISearchBarDelegate
 
-- (void)searchBarBookmarkButtonClicked:(UISearchBar *)searchBar
-{
-   
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    
+    searchBar.showsCancelButton = YES;
+    
+    
 }
 
-- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
-{
-    return YES;
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    
+    [searchBar resignFirstResponder];
+    
+    searchBar.showsCancelButton = NO;
+    
+    searchBar.text = [searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+
+    [self.tableView reloadData];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    
+    [searchBar resignFirstResponder];
+    
+    searchBar.showsCancelButton = NO;
+
+    [self.tableView reloadData];
 }
 
 - (void)reloadData{
@@ -161,7 +209,6 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
     if (section == 0) {
         return self.functionGroup.count;
     }
@@ -218,8 +265,9 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (section == 0)
-    return [self createSearchController].searchBar;
+    if (section == 0) {
+        return [self createSearchBar];
+    }
     
     UIView *contentView = [[UIView alloc] init];
     [contentView setBackgroundColor:[UIColor colorWithRed:0.88 green:0.88 blue:0.88 alpha:1.0]];
@@ -242,6 +290,21 @@
         NSLog(@"被删除用户:%@",username);
         [self reloadData];
     }
+}
+
+#pragma mark - UISearchResultsUpdating
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+    
+    NSLog(@"updateSearchResultsForSearchController");
+//    NSString *searchString = [self.searchController.searchBar text];
+//    NSPredicate *preicate = [NSPredicate predicateWithFormat:@"SELF CONTAINS[c] %@", searchString];
+//    if (self.searchList!= nil) {
+//        [self.searchList removeAllObjects];
+//    }
+//    //过滤数据
+//    self.searchList= [NSMutableArray arrayWithArray:[_dataList filteredArrayUsingPredicate:preicate]];
+//    //刷新表格
+//    [self.tableView reloadData];
 }
 
 #pragma mark EMChatManagerDelegate方法

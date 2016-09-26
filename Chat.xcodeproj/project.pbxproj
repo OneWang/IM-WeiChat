@@ -209,6 +209,7 @@
 		0AF436BC1D6D761C0086BA39 /* PhotoContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AF436BB1D6D761C0086BA39 /* PhotoContainerView.m */; };
 		0AF436C31D6D84090086BA39 /* UITableView+SDAutoTableViewCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AF436C01D6D84090086BA39 /* UITableView+SDAutoTableViewCellHeight.m */; };
 		0AF436C41D6D84090086BA39 /* UIView+SDAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AF436C21D6D84090086BA39 /* UIView+SDAutoLayout.m */; };
+		0AFCA51D1D98CFCE0083720C /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFCA51C1D98CFCE0083720C /* SearchViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -673,6 +674,8 @@
 		0AF436C01D6D84090086BA39 /* UITableView+SDAutoTableViewCellHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+SDAutoTableViewCellHeight.m"; sourceTree = "<group>"; };
 		0AF436C11D6D84090086BA39 /* UIView+SDAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SDAutoLayout.h"; sourceTree = "<group>"; };
 		0AF436C21D6D84090086BA39 /* UIView+SDAutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SDAutoLayout.m"; sourceTree = "<group>"; };
+		0AFCA51B1D98CFCE0083720C /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		0AFCA51C1D98CFCE0083720C /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1510,6 +1513,8 @@
 				0ACDE6571D6E9CB000B2B004 /* ApplyViewController.m */,
 				0ACDE6591D6ED86000B2B004 /* ContactResultController.h */,
 				0ACDE65A1D6ED86000B2B004 /* ContactResultController.m */,
+				0AFCA51B1D98CFCE0083720C /* SearchViewController.h */,
+				0AFCA51C1D98CFCE0083720C /* SearchViewController.m */,
 			);
 			name = Conttrollers;
 			sourceTree = "<group>";
@@ -2043,6 +2048,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AFCA51D1D98CFCE0083720C /* SearchViewController.m in Sources */,
 				0A5FFD791D4724BD006F828B /* UIView+Extension.m in Sources */,
 				0AC89E8B1CDA0C3300AA53CF /* SDWebImageDecoder.m in Sources */,
 				0AC89E961CDA0C3300AA53CF /* UIView+WebCacheOperation.m in Sources */,

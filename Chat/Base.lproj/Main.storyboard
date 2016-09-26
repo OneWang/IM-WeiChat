@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Tab Bar Controller-->
@@ -111,7 +112,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Id3-uH-c9t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="929.5" y="-695.5"/>
+            <point key="canvasLocation" x="835.5" y="-286.5"/>
         </scene>
         <!--Conversation-->
         <scene sceneID="PDj-Vs-Axg">
@@ -158,17 +159,27 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="通讯录" id="YRv-2k-pRY">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="MAr-b6-xhh">
-                            <connections>
-                                <segue destination="rmt-N5-Mzq" kind="push" id="OX4-ss-Ju4"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="MAr-b6-xhh">
+                                <connections>
+                                    <segue destination="rmt-N5-Mzq" kind="push" id="OX4-ss-Ju4"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="icon_magnifier" id="x7a-Rw-JqT">
+                                <connections>
+                                    <segue destination="wkq-9e-dkD" kind="push" id="Fmw-wH-bPG"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="mainTableView" destination="NZK-bH-Lnm" id="ALd-eB-hNT"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="91w-uP-kMm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="215.5" y="-212.5"/>
+            <point key="canvasLocation" x="-0.5" y="-308.5"/>
         </scene>
         <!--发现-->
         <scene sceneID="kAI-lI-TGU">
@@ -461,7 +472,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iAb-Jw-iIm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="818.5" y="42.5"/>
+            <point key="canvasLocation" x="870.5" y="222.5"/>
         </scene>
         <!--AddressBook-->
         <scene sceneID="A6x-cf-xxW">
@@ -479,7 +490,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wsG-dG-QJ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-354.5" y="-231.5"/>
+            <point key="canvasLocation" x="-432.5" y="-265.5"/>
         </scene>
         <!--Setting-->
         <scene sceneID="OsU-qU-IR1">
@@ -699,7 +710,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H1M-WE-gbM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="147.5" y="1489.5"/>
+            <point key="canvasLocation" x="10.5" y="1475.5"/>
         </scene>
         <!--Me-->
         <scene sceneID="InE-aJ-VGZ">
@@ -719,6 +730,55 @@
             </objects>
             <point key="canvasLocation" x="-560.5" y="1272.5"/>
         </scene>
+        <!--Search View Controller-->
+        <scene sceneID="bbA-sv-KnI">
+            <objects>
+                <viewController id="wkq-9e-dkD" customClass="SearchViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eKu-zN-jqn"/>
+                        <viewControllerLayoutGuide type="bottom" id="Qvz-ZA-11C"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6hE-kd-ASq">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="bB6-b5-6oX">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="NgX-Y9-Esz"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="wkq-9e-dkD" id="c3l-Aw-nVX"/>
+                                </connections>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bB6-b5-6oX" firstAttribute="leading" secondItem="6hE-kd-ASq" secondAttribute="leading" id="IXq-61-eKv"/>
+                            <constraint firstItem="bB6-b5-6oX" firstAttribute="top" secondItem="eKu-zN-jqn" secondAttribute="bottom" id="Ov1-CP-2U5"/>
+                            <constraint firstAttribute="trailing" secondItem="bB6-b5-6oX" secondAttribute="trailing" id="vfE-NM-buY"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="ynO-zC-b26"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="ztB-hk-74e" id="XaU-kn-qO6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XfP-eh-RN5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="ztB-hk-74e">
+                    <connections>
+                        <outlet property="delegate" destination="wkq-9e-dkD" id="g7D-hE-fzQ"/>
+                        <outlet property="searchBar" destination="bB6-b5-6oX" id="OF3-Py-WJi"/>
+                        <outlet property="searchContentsController" destination="wkq-9e-dkD" id="AMZ-RA-80K"/>
+                        <outlet property="searchResultsDataSource" destination="wkq-9e-dkD" id="FGa-KP-GYn"/>
+                        <outlet property="searchResultsDelegate" destination="wkq-9e-dkD" id="1gr-rK-tEu"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="736.5" y="-1150.5"/>
+        </scene>
     </scenes>
     <resources>
         <image name="MoreMyAlbum" width="25" height="25"/>
@@ -733,6 +793,7 @@
         <image name="chatListCellHead" width="51" height="51"/>
         <image name="chat_receiver_bg" width="40" height="40"/>
         <image name="chat_sender_bg" width="40" height="40"/>
+        <image name="icon_magnifier" width="16" height="15"/>
         <image name="tabbar_contacts" width="27" height="23"/>
         <image name="tabbar_contactsHL" width="27" height="23"/>
         <image name="tabbar_discover" width="23" height="23"/>
