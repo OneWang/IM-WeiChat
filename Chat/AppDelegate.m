@@ -49,6 +49,7 @@
 {
     if (!error) {
         [MBProgressHUD showSuccess:@"自动登录成功"];
+//        [loginInfo writeToFile:[NSString stringWithFormat:@"%@",NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject] atomically:YES];
         NSLog(@"自动登录成功 %@",loginInfo);
     }else{
         [MBProgressHUD showError:@"自动登录失败"];

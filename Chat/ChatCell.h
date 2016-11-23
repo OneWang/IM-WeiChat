@@ -14,6 +14,7 @@ static NSString *SendCell = @"SendCell";
 @protocol ChatCellDelegate <NSObject>
 
 - (void)chatCellShowImageWithMessage:(EMMessage *)msg;
+- (void)chatCellClickHeaderImageView:(UIImageView *)headerImage;
 
 @end
 

@@ -69,7 +69,7 @@
     [self.dataArray addObject:group];
 }
 
-///设置分割线的偏移量
+///设置分割线的偏移量将15像素的横线全部显示出来
 - (void)viewDidLayoutSubviews
 {
     if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {

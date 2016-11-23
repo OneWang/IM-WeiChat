@@ -23,6 +23,8 @@
 /// 显示图片的 view
 @property (strong, nonatomic) PhotoContainerView *photoView;
 
+@property (weak, nonatomic) IBOutlet UIImageView *headerView;
+
 @end
 
 @implementation ChatCell
@@ -41,18 +43,22 @@
 {
     if (!_photoView) {
         _photoView = [[PhotoContainerView alloc] init];
-        _photoView.backgroundColor = [UIColor redColor];
     }
     return _photoView;
 }
 
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
     //在此方法做些初始化的操作
     //给label添加手势
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
     [tap addTarget:self action:@selector(messageLabelTap:)];
     [self.messageLabel addGestureRecognizer:tap];
+    
+    UITapGestureRecognizer *tapHeader = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headerViewTap:)];
+    [self.headerView addGestureRecognizer:tapHeader];
+    self.headerView.userInteractionEnabled = YES;
 }
 
 #pragma mark messageLabel点击事件
@@ -64,6 +70,12 @@
     if ([body isKindOfClass:[EMVoiceMessageBody class]]) {
         BOOL receiver = [self.reuseIdentifier isEqualToString:ReceiveCell];
         [AudioPlayTool playWithMessage:self.message messageLabel:self.messageLabel receiver:receiver];
+    }
+}
+
+- (void)headerViewTap:(UITapGestureRecognizer *)recognizer{
+    if ([self.delegate respondsToSelector:@selector(chatCellClickHeaderImageView:)]) {
+        [self.delegate chatCellClickHeaderImageView:(UIImageView *)recognizer.view];
     }
 }
 
@@ -112,7 +124,7 @@
     //在cell里面添加一个UIImageView
     [self.messageLabel addSubview:self.photoView];
 //    [self.messageLabel addSubview:self.chatImgView];
-    
+
     //设置图片控件为缩略图的
 //    self.photoView.frame = thumbnailFrame;
 //    self.chatImgView.frame = thumbnailFrame;
@@ -120,17 +132,17 @@
         make.centerY.equalTo(self.messageLabel);
         make.edges.equalTo(@0);
     }];
-    
+    NSLog(@"%@=%@=%@",NSStringFromCGRect(self.messageLabel.frame),NSStringFromCGRect(self.photoView.frame),NSStringFromCGRect(thumbnailFrame));
     //下载图片
     //如果本地的图片存在直接显示本地,如果本地图片不存在就加载网络服务器上的图片
     NSFileManager *manager = [NSFileManager defaultManager];
     if ([manager fileExistsAtPath:imgBody.thumbnailLocalPath]) {
 //        NSLog(@"图片本地路径%@",imgBody.thumbnailLocalPath);
-        self.photoView.picPathStringsArray = @[imgBody.localPath];
+        self.photoView.picPathStringsArray = @[imgBody.thumbnailLocalPath];
 //        [self.chatImgView sd_setImageWithURL:[NSURL fileURLWithPath:imgBody.thumbnailLocalPath] placeholderImage:[UIImage imageNamed:@"defult"]];
     }else{
 //        NSLog(@"图片远程路径%@",imgBody.thumbnailRemotePath);
-        self.photoView.picPathStringsArray = @[imgBody.remotePath];
+        self.photoView.picPathStringsArray = @[imgBody.thumbnailRemotePath];
 //        [self.chatImgView sd_setImageWithURL:[NSURL URLWithString:imgBody.thumbnailRemotePath] placeholderImage:[UIImage imageNamed:@"defult"]];
     }
 

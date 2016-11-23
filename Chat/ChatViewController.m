@@ -17,6 +17,7 @@
 #import "FunctionView.h"
 #import "UIViewExt.h"
 #import "UIViewController+BackButtonHandler.h"
+#import "MBProgressHUD+MJ.h"
 
 #import "EMCDDeviceManager.h"
 #import "PhotoContainerView.h"
@@ -112,6 +113,13 @@
 - (BOOL)navigationShouldPopOnBackButton
 {
     return YES;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    //把消息滚动显示在最上面
+    [self scrollToBottom];
 }
 
 /** 添加更多的功能 */
@@ -227,7 +235,7 @@
         cell = [tableView dequeueReusableCellWithIdentifier:SendCell];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//    cell.delegate = self;
+    cell.delegate = self;
     cell.message = message;
     return cell;
 }
@@ -268,11 +276,19 @@
 //        url = [NSURL URLWithString:body.remotePath];
 //        NSString *path = url.absoluteString;
 //        self.photoContainer.picPathStringsArray = @[path];
-//        
 //    }
 //    
 //}
 
+- (void)chatCellClickHeaderImageView:(UIImageView *)headerImage
+{
+    ChatCell *cell = (ChatCell *)headerImage.superview.superview;
+    if ([cell.reuseIdentifier isEqualToString:@"ReceiveCell"]) {
+        NSLog(@"chatCellClickHeaderImageView头像被点击!!!%@",self.friendName);
+    }else if([cell.reuseIdentifier isEqualToString:@"SendCell"]){
+        NSLog(@"chatCellClickHeaderImageView头像被点击!!!%@",@"获取当前登录的账户名称");
+    }
+}
 #pragma mark UITextViewDelegate
 - (void)textViewDidChange:(UITextView *)textView
 {
@@ -350,6 +366,14 @@
     EMMessage *msgObj = [[EMMessage alloc] initWithReceiver:self.friendName bodies:@[body]];
     msgObj.messageType = eMessageTypeChat;
     
+    id message = msgObj.messageBodies[0];
+    if ([body isKindOfClass:[EMTextMessageBody class]]) {
+        EMTextMessageBody *textBody = message;
+        if (textBody.text.length == 0) {
+            [MBProgressHUD showError:@"发送消息不能为空!!"];
+            return ;
+        }
+    }
     //3.发送消息
     [[EaseMob sharedInstance].chatManager asyncSendMessage:msgObj progress:nil prepare:^(EMMessage *message, EMError *error) {
         NSLog(@"准备发送");
@@ -360,7 +384,7 @@
     //把消息添加到数据源数组,然后刷新表格
     [self addDataArrayWithMessage:msgObj];
     [self.tableView reloadData];
-    
+
     //把消息滚动显示在最上面
     [self scrollToBottom];
 }
