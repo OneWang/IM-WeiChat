@@ -14,3 +14,12 @@ libEaseMobClientSDKLite.a 不包含实时语音功能，libEaseMobClientSDK.a包
 
 
 ![image](https://github.com/OneWang/IM-WeiChat/blob/master/ChatSnapshot/3.png)
+
+
+![image](https://github.com/OneWang/IM-WeiChat/blob/master/ChatSnapshot/4.png)
+
+
+![image](https://github.com/OneWang/IM-WeiChat/blob/master/ChatSnapshot/5.png)
+
+
+![image](https://github.com/OneWang/IM-WeiChat/blob/master/ChatSnapshot/6.png)
