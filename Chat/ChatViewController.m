@@ -22,7 +22,7 @@
 #import "EMCDDeviceManager.h"
 #import "PhotoContainerView.h"
 
-@interface ChatViewController ()<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,EMChatManagerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,EmotionViewdelegate,ChatCellDelegate>
+@interface ChatViewController ()<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,EMChatManagerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,EmotionViewdelegate,ChatCellDelegate,ChatShareDelegate>
 @property (strong, nonatomic) NSString * name;
 /** emoji 键盘 */
 @property (strong, nonatomic) EmojiView *emoji;
@@ -125,40 +125,83 @@
 /** 添加更多的功能 */
 - (void)addMoreFunctionView{
     // 添加更多功能
-     FunctionView *functionView = [[FunctionView alloc]initWithImageBlock:^{
-        NSLog(@"点击了图片按钮");
-         //将更多面板移除
-         [self.functionView removeFromSuperview];
-        // 跳转到图片选择器
-        UIImagePickerController *picker = [[UIImagePickerController alloc]init];
-        picker.delegate = self;
-        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        [self presentViewController:picker animated:YES completion:nil];
-    } callBtnBlock:^{
-        NSLog(@"点击了电话按钮");
-        //将更多面板移除
-        [self.functionView removeFromSuperview];
-        // 电话聊天
-        [[EaseMob sharedInstance].callManager asyncMakeVoiceCall:self.friendName timeout:50 error:nil];
-    } videoBlock:^{
-        NSLog(@"点击了视频按钮");
-        //将更多面板移除
-        [self.functionView removeFromSuperview];
-        [[EaseMob sharedInstance].callManager asyncMakeVideoCall:self.friendName timeout:50 error:nil];
-    }];
-    functionView.frame = CGRectMake(0, screenH, screenW, 200);
+    FunctionView *functionView = [[FunctionView alloc] initWithFrame:CGRectMake(0, screenH, kWeChatScreenWidth, 217)];
+    functionView.delegate = self;
+    self.inputToolBarBottomConstraint.constant = 217;
     [[UIApplication sharedApplication].keyWindow addSubview:functionView];
     self.functionView = functionView;
     
     if (self.textView.isFirstResponder) {
         [self.textView resignFirstResponder];
-        functionView.top = screenH - 200;
-        self.tableView.frame = CGRectMake(0, 0, screenW, screenH - 200);
+        functionView.top = screenH - 217;
+        self.tableView.frame = CGRectMake(0, 0, screenW, screenH - 217);
     }else{
 //        self.tableView.top = (functionView.top > screenH - 1)? - 200:0;
-        functionView.top = (functionView.top > screenH - 1)?screenH - 200:screenH;
+        functionView.top = (functionView.top > screenH - 1)?screenH - 217:screenH;
     }
 }
+
+#pragma mark - ChatShareDelegate
+- (void)cellWithTagDidTapped:(NSInteger)tag
+{
+    switch (tag) {
+        case TAG_Photo:
+            self.functionView.top = screenH;
+            self.inputToolBarBottomConstraint.constant = 0;
+            [self presentImagePickerController];
+            break;
+        case TAG_Location:
+            [self presendLocationViewController];
+            break;
+        case TAG_Camera:
+            [self takePictureAndVideoAction];
+            break;
+        case TAG_Sight:
+            [self presentSightController];
+            break;
+        default:
+            break;
+    }
+}
+
+#pragma mark -private method
+- (void)presentImagePickerController {
+    //    LLImagePickerController *vc = [[LLImagePickerController alloc] init];
+    //    vc.pickerDelegate = self;
+    //    [self.navigationController presentViewController:vc animated:YES completion:nil];
+    UIImagePickerController *picker = [[UIImagePickerController alloc]init];
+    picker.delegate = self;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self presentViewController:picker animated:YES completion:nil];
+}
+
+- (void)presendLocationViewController {
+    //    LLGaoDeLocationViewController *locationVC = [[LLGaoDeLocationViewController alloc] init];
+    //    locationVC.delegate = self;
+    //
+    //    LLNavigationController *navigationVC = [[LLNavigationController alloc] initWithRootViewController:locationVC];
+    //
+    //    [self.navigationController presentViewController:navigationVC animated:YES completion:nil];
+}
+
+- (void)takePictureAndVideoAction {
+#if TARGET_IPHONE_SIMULATOR
+    
+#elif TARGET_OS_IPHONE
+    self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    self.imagePicker.mediaTypes = @[(NSString *)kUTTypeImage,(NSString *)kUTTypeMovie];
+    self.imagePicker.videoMaximumDuration = MAX_VIDEO_DURATION_FOR_CHAT;
+    [self presentViewController:self.imagePicker animated:YES completion:NULL];
+#endif
+    
+}
+
+
+- (void)presentSightController {
+    NSLog(@"小视频");
+    
+}
+
 
 - (void)loadLocalChatRecords{
     
@@ -536,6 +579,8 @@
     [AudioPlayTool stop];
     [UIView animateWithDuration:.2 animations:^{
         self.emoji.frame = CGRectMake(0, screenH, screenW, 0);
+        self.inputToolBarBottomConstraint.constant = 0;
+        self.functionView.top = screenH;
         self.tableView.height = screenH - self.inputToolBarConstraint.constant - 64;
     }];
     [self.functionView removeFromSuperview];

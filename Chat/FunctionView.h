@@ -8,6 +8,34 @@
 
 #import <UIKit/UIKit.h>
 
+@class FunctionModel;
+
+#define TAG_Photo 1
+#define TAG_Camera 2
+#define TAG_Sight 3
+#define TAG_VideoCall 4
+#define TAG_Redpackage 5
+#define TAG_MoneyTransfer 6
+#define TAG_Location 6
+#define TAG_Favorites 7
+#define TAG_Card 8
+#define TAG_Wallet 9
+
+@protocol ChatShareDelegate <NSObject>
+- (void)cellWithTagDidTapped:(NSInteger)tag;
+@end
+
+/**
+ *定义显示的 cell
+ */
+@interface ShareCell : UICollectionViewCell
+
+
+@end
+
+
 @interface FunctionView : UIView
-- (instancetype)initWithImageBlock:(void(^)(void))imageBlock callBtnBlock:(void(^)(void))callBlock videoBlock:(void(^)(void))videoBlock;
+
+@property (nonatomic, weak) id<ChatShareDelegate> delegate;
+
 @end
