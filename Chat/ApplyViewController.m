@@ -14,9 +14,16 @@ static ApplyViewController *controller = nil;
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        controller = [[self alloc] initWithStyle:UITableViewStylePlain];
+        controller = [[self alloc] init];
     });
     return controller;
+}
+
+- (void)viewDidLoad{
+    [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.navigationController.navigationItem.title = @"群组";
 }
 
 @end

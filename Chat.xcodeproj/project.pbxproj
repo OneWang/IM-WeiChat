@@ -89,6 +89,7 @@
 		0AB22D171CD87B5E00A9DE3A /* AddressbookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB22D161CD87B5E00A9DE3A /* AddressbookViewController.m */; };
 		0AB22D1C1CD8A14300A9DE3A /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB22D1B1CD8A14300A9DE3A /* SettingViewController.m */; };
 		0AB22D211CD8A85E00A9DE3A /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB22D201CD8A85E00A9DE3A /* ChatViewController.m */; };
+		0AB4CF451E8BA13D00E6F4D1 /* SearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB4CF441E8BA13D00E6F4D1 /* SearchResultViewController.m */; };
 		0AC89E641CD9EE7700AA53CF /* AudioPlayTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC89E631CD9EE7700AA53CF /* AudioPlayTool.m */; };
 		0ACCCF151CD9741100B1F817 /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACCCF141CD9741100B1F817 /* ChatCell.m */; };
 		0ACDE6361D6E88AA00B2B004 /* 0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0ACDE6191D6E88AA00B2B004 /* 0.jpg */; };
@@ -309,6 +310,8 @@
 		0AB22D1B1CD8A14300A9DE3A /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		0AB22D1F1CD8A85E00A9DE3A /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		0AB22D201CD8A85E00A9DE3A /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
+		0AB4CF431E8BA13D00E6F4D1 /* SearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultViewController.h; sourceTree = "<group>"; };
+		0AB4CF441E8BA13D00E6F4D1 /* SearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultViewController.m; sourceTree = "<group>"; };
 		0AC89E621CD9EE7700AA53CF /* AudioPlayTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPlayTool.h; sourceTree = "<group>"; };
 		0AC89E631CD9EE7700AA53CF /* AudioPlayTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPlayTool.m; sourceTree = "<group>"; };
 		0ACCCF131CD9741100B1F817 /* ChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatCell.h; sourceTree = "<group>"; };
@@ -834,6 +837,8 @@
 				0ACDE65A1D6ED86000B2B004 /* ContactResultController.m */,
 				0AFCA51B1D98CFCE0083720C /* SearchViewController.h */,
 				0AFCA51C1D98CFCE0083720C /* SearchViewController.m */,
+				0AB4CF431E8BA13D00E6F4D1 /* SearchResultViewController.h */,
+				0AB4CF441E8BA13D00E6F4D1 /* SearchResultViewController.m */,
 			);
 			name = Conttrollers;
 			sourceTree = "<group>";
@@ -1460,6 +1465,7 @@
 				0AF436C41D6D84090086BA39 /* UIView+SDAutoLayout.m in Sources */,
 				0AB22C431CD8467300A9DE3A /* main.m in Sources */,
 				0A2275291D6DC0A200D5D1C9 /* ContacterTools.m in Sources */,
+				0AB4CF451E8BA13D00E6F4D1 /* SearchResultViewController.m in Sources */,
 				0A5481831D704AA30033B695 /* MLEmojiLabel.m in Sources */,
 				0ADF00551D76800100D279B9 /* BaseRefreshView.m in Sources */,
 				0ACDE6751D6F1E4F00B2B004 /* NSDate+Extension.m in Sources */,

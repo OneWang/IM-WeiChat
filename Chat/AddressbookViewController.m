@@ -14,6 +14,7 @@
 #import "ContactModel.h"
 #import "ApplyViewController.h"
 #import "ContactResultController.h"
+#import "SearchResultViewController.h"
 
 @interface AddressbookViewController ()<EMChatManagerDelegate,UISearchBarDelegate,UISearchControllerDelegate,UISearchResultsUpdating>
 
@@ -32,38 +33,12 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *mainTableView;
 
+@property (weak, nonatomic) UIButton *cover;
+@property (weak, nonatomic) SearchResultViewController *searchResultVC;
 
 @end
 
 @implementation AddressbookViewController
-- (NSMutableArray *)data
-{
-    if (!_data) {
-        _data = [NSMutableArray array];
-    }
-    return _data;
-}
-- (NSMutableArray *)section
-{
-    if (!_section) {
-        _section = [NSMutableArray array];
-    }
-    return _section;
-}
-- (NSMutableArray *)functionGroup
-{
-    if (!_functionGroup) {
-        _functionGroup = [NSMutableArray array];
-    }
-    return _functionGroup;
-}
-- (NSMutableArray *)buddyList
-{
-    if (!_buddyList) {
-        _buddyList = [NSMutableArray array];
-    }
-    return _buddyList;
-}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -155,14 +130,59 @@
 }
 
 #pragma mark - UISearchBarDelegate
-
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
     
-    searchBar.showsCancelButton = YES;
+    // 1.隐藏导航栏
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
     
+    // 2.修改搜索框的背景图片
+    [searchBar setBackgroundImage:[UIImage imageNamed:@"bg_login_textfield_hl"]];
     
+    // 3.显示搜索框右边的取消按钮
+    [searchBar setShowsCancelButton:YES animated:YES];
+    
+    // 4.显示遮盖
+    [UIView animateWithDuration:0.5 animations:^{
+        self.cover.alpha = 0.5;
+    }];
 }
 
+/**
+ *  键盘退下:搜索框结束编辑文字
+ */
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
+    // 1.显示导航栏
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    
+    // 2.修改搜索框的背景图片
+    [searchBar setBackgroundImage:[UIImage imageNamed:@"bg_login_textfield"]];
+    
+    // 3.隐藏搜索框右边的取消按钮
+    [searchBar setShowsCancelButton:NO animated:YES];
+    
+    // 4.隐藏遮盖
+    [UIView animateWithDuration:0.5 animations:^{
+        self.cover.alpha = 0.0;
+    }];
+    
+    // 5.移除搜索结果
+    self.searchResultVC.view.hidden = YES;
+    searchBar.text = nil;
+}
+
+/**
+ *  搜索框里面的文字变化的时候调用
+ */
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    if (searchText.length) {
+        self.searchResultVC.view.hidden = NO;
+        self.searchResultVC.searchText = searchText;
+    } else {
+        self.searchResultVC.view.hidden = YES;
+    }
+}
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     
@@ -363,6 +383,75 @@
         ChatViewController * chatVC = destVC;
         chatVC.buddy = self.buddyList[selectedRow];
     }
+}
+
+#pragma mark - setter and getter
+- (UIButton *)cover{
+    if (!_cover) {
+        UIButton *cover = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.cover = cover;
+        [self.view addSubview:_cover];
+        [self.view bringSubviewToFront:_cover];
+        _cover.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.5];
+        [_cover addTarget:self action:@selector(coverClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_cover mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_equalTo([UIScreen mainScreen].bounds.size.width);
+            make.height.mas_equalTo([UIScreen mainScreen].bounds.size.height - 64);
+            make.left.equalTo(self.view);
+            make.top.equalTo(self.searchBar.mas_bottom);
+        }];
+    }
+    return _cover;
+}
+
+- (NSMutableArray *)data
+{
+    if (!_data) {
+        _data = [NSMutableArray array];
+    }
+    return _data;
+}
+- (NSMutableArray *)section
+{
+    if (!_section) {
+        _section = [NSMutableArray array];
+    }
+    return _section;
+}
+- (NSMutableArray *)functionGroup
+{
+    if (!_functionGroup) {
+        _functionGroup = [NSMutableArray array];
+    }
+    return _functionGroup;
+}
+- (NSMutableArray *)buddyList
+{
+    if (!_buddyList) {
+        _buddyList = [NSMutableArray array];
+    }
+    return _buddyList;
+}
+
+- (SearchResultViewController *)searchResultVC{
+    if (!_searchResultVC) {
+        SearchResultViewController *searchResult = [[SearchResultViewController alloc] init];
+        self.searchResultVC = searchResult;
+        [self addChildViewController:_searchResultVC];
+        [self.view addSubview:_searchResultVC.view];
+        [_searchResultVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_equalTo([UIScreen mainScreen].bounds.size.width);
+            make.height.mas_equalTo([UIScreen mainScreen].bounds.size.height - 64);
+            make.left.equalTo(self.view);
+            make.top.equalTo(self.searchBar.mas_bottom);
+        }];
+    }
+    return _searchResultVC;
+}
+
+#pragma mark - event response
+- (void)coverClick:(UIButton *)sender{
+    [self.searchBar resignFirstResponder];
 }
 
 @end
