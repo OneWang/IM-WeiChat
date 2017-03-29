@@ -15,9 +15,10 @@
 #define kWeChatScreenHeight [UIScreen mainScreen].bounds.size.height
 #define kWeChatScreenWidth [UIScreen mainScreen].bounds.size.width
 
-#import "EaseMob.h"
+#import <EaseMob.h>
 
-#import "MJRefresh.h"
-#import "MJExtension.h"
+#import <MJRefresh.h>
+#import <MJExtension.h>
+#import <Masonry.h>
 
 #endif /* PrefixHeader_pch */

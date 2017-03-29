@@ -1,0 +1,35 @@
+PODS:
+  - EaseMobSDK (2.3.1)
+  - Masonry (1.0.2)
+  - MJExtension (3.0.13)
+  - MJRefresh (3.1.12)
+  - SDWebImage (3.8.2):
+    - SDWebImage/Core (= 3.8.2)
+  - SDWebImage/Core (3.8.2)
+
+DEPENDENCIES:
+  - EaseMobSDK (from `https://github.com/easemob/sdk-ios-cocoapods.git`)
+  - Masonry
+  - MJExtension
+  - MJRefresh
+  - SDWebImage
+
+EXTERNAL SOURCES:
+  EaseMobSDK:
+    :git: https://github.com/easemob/sdk-ios-cocoapods.git
+
+CHECKOUT OPTIONS:
+  EaseMobSDK:
+    :commit: bf03d7b0a6422421567080d7602bf5eebdd7a776
+    :git: https://github.com/easemob/sdk-ios-cocoapods.git
+
+SPEC CHECKSUMS:
+  EaseMobSDK: d21aecc3af9cf07f774892da8fa10641f5d816c6
+  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
+  MJExtension: 5932755f451458eefa24239358817f8d291240c7
+  MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
+  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+
+PODFILE CHECKSUM: b2057675b8f1559f0f09e904661ecfd3300b09ab
+
+COCOAPODS: 1.0.1
