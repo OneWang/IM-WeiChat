@@ -37,8 +37,7 @@
 
 #pragma mark - 
 #pragma mark - 懒加载
-- (UIImageView *)iconView
-{
+- (UIImageView *)iconView{
     if (!_iconView) {
         _iconView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 25, 25)];
         _iconView.layer.cornerRadius = 5;
@@ -49,23 +48,20 @@
     }
     return _iconView;
 }
-- (UISwitch *)switchView
-{
+- (UISwitch *)switchView{
     if (!_switchView) {
         _switchView = [[UISwitch alloc] init];
     }
     return _switchView;
 }
-- (UIImageView *)arrowView
-{
+- (UIImageView *)arrowView{
     if (_arrowView == nil) {
         _arrowView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"CellArrow"]];
     }
     return _arrowView;
 }
 
-- (UILabel *)label
-{
+- (UILabel *)label{
     if (_label == nil) {
         _label = [[UILabel alloc] init];
         _label.frame = CGRectMake(10, 2, 180, 40);
@@ -74,8 +70,7 @@
     return _label;
 }
 
-- (UIView *)rightView
-{
+- (UIView *)rightView{
     if (_rightView == nil) {
         _rightView = [[UIView alloc] init];
         [_rightView addSubview:self.arrowView];
@@ -104,13 +99,12 @@
     if (cell == nil) {
         cell = [[SettingCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ID];
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
-- (void)setItem:(SettingItem *)item
-{
+- (void)setItem:(SettingItem *)item{
     _item = item;
-    
     //设置数据
     [self setupData];
     //设置右边显示的内容
@@ -120,11 +114,6 @@
 - (void)setupData{
     if (self.item.icon) {
         self.imageView.image = [UIImage imageNamed:self.item.icon];
-        self.imageView.layer.cornerRadius = 5;
-        self.imageView.layer.borderColor = [UIColor redColor].CGColor;
-        self.imageView.layer.borderWidth = 2;
-        self.imageView.layer.masksToBounds = YES;
-        self.imageView.backgroundColor = [UIColor redColor];
     }
     self.textLabel.text = self.item.title;
     self.detailTextLabel.text = self.item.subtitle;
@@ -132,14 +121,12 @@
     self.iconView.image = self.item.image;
 }
 
-- (void)layoutSubviews
-{
+- (void)layoutSubviews{
     [super layoutSubviews];
     
     self.imageView.frame = CGRectMake(16, 9, 25, 25);
     self.textLabel.x = 56;
 }
-
 
 - (void)setupRightContent{
     self.accessoryView = self.rightView;

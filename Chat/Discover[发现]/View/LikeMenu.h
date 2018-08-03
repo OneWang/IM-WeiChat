@@ -12,7 +12,7 @@
 ///是否显示
 @property (nonatomic, assign, getter = isShowing) BOOL show;
 ///点击点赞按钮
-@property (nonatomic, copy) void (^likeButtonClickedOperation)();
+@property (nonatomic, copy) void (^likeButtonClickedOperation)(void);
 ///点击评论按钮
-@property (nonatomic, copy) void (^commentButtonClickedOperation)();
+@property (nonatomic, copy) void (^commentButtonClickedOperation)(void);
 @end

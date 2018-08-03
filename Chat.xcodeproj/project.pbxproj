@@ -66,7 +66,6 @@
 		0A9269181D4F2E3800A3DA50 /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9269171D4F2E3800A3DA50 /* UIViewExt.m */; };
 		0AB22C431CD8467300A9DE3A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB22C421CD8467300A9DE3A /* main.m */; };
 		0AB22C461CD8467300A9DE3A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB22C451CD8467300A9DE3A /* AppDelegate.m */; };
-		0AB22C491CD8467300A9DE3A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB22C481CD8467300A9DE3A /* ViewController.m */; };
 		0AB22C4C1CD8467300A9DE3A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22C4A1CD8467300A9DE3A /* Main.storyboard */; };
 		0AB22C4E1CD8467300A9DE3A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AB22C4D1CD8467300A9DE3A /* Assets.xcassets */; };
 		0AB22C5C1CD8467300A9DE3A /* ChatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB22C5B1CD8467300A9DE3A /* ChatTests.m */; };
@@ -273,8 +272,6 @@
 		0AB22C421CD8467300A9DE3A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0AB22C441CD8467300A9DE3A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0AB22C451CD8467300A9DE3A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		0AB22C471CD8467300A9DE3A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		0AB22C481CD8467300A9DE3A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		0AB22C4B1CD8467300A9DE3A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0AB22C4D1CD8467300A9DE3A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0AB22C521CD8467300A9DE3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -679,8 +676,6 @@
 				0AB22C771CD846C500A9DE3A /* Class */,
 				0AB22C761CD846A700A9DE3A /* Others */,
 				0AB22C751CD8469800A9DE3A /* Lib */,
-				0AB22C471CD8467300A9DE3A /* ViewController.h */,
-				0AB22C481CD8467300A9DE3A /* ViewController.m */,
 				0AB22C4D1CD8467300A9DE3A /* Assets.xcassets */,
 				0AB22C411CD8467300A9DE3A /* Supporting Files */,
 			);
@@ -1230,12 +1225,12 @@
 		0AB22C361CD8467200A9DE3A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = LI;
 				TargetAttributes = {
 					0AB22C3D1CD8467300A9DE3A = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 3T9NMUY9BX;
+						DevelopmentTeam = 3593JT4FD7;
 					};
 					0AB22C561CD8467300A9DE3A = {
 						CreatedOnToolsVersion = 7.3;
@@ -1432,7 +1427,6 @@
 				0AD498F71CD9DC9A00D0C8E2 /* EMCDDeviceManager+Remind.m in Sources */,
 				0A5481541D70456A0033B695 /* CommentModel.m in Sources */,
 				0A5481841D704AA30033B695 /* NSAttributedString+MLLabel.m in Sources */,
-				0AB22C491CD8467300A9DE3A /* ViewController.m in Sources */,
 				0A54818D1D704AA30033B695 /* MLLinkLabel.m in Sources */,
 				0A54814B1D6FFF1E0033B695 /* MomentCell.m in Sources */,
 				0AF436BC1D6D761C0086BA39 /* PhotoContainerView.m in Sources */,
@@ -1540,12 +1534,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1593,12 +1589,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1633,6 +1631,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = 3593JT4FD7;
+				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Chat/PrefixHeader.pch";
 				INFOPLIST_FILE = Chat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1657,6 +1657,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = 3593JT4FD7;
+				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Chat/PrefixHeader.pch";
 				INFOPLIST_FILE = Chat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

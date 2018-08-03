@@ -12,11 +12,11 @@
 
 + (instancetype)refreshFooterWithRefreshingText:(NSString *)text;
 
-- (void)addToScrollView:(UIScrollView *)scrollView refreshOperation:(void(^)())refresh;
+- (void)addToScrollView:(UIScrollView *)scrollView refreshOperation:(void(^)(void))refresh;
 
 @property (nonatomic, strong) UILabel *indicatorLabel;
 @property (nonatomic, strong) UIActivityIndicatorView *indicator;
 
-@property (nonatomic, copy) void (^refreshBlock)();
+@property (nonatomic, copy) void (^refreshBlock)(void);
 
 @end

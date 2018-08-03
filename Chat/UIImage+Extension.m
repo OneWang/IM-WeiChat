@@ -6,7 +6,7 @@
 //  Copyright © 2015年 . All rights reserved.
 //
 
-#import "UIImage+extension.h"
+#import "UIImage+Extension.h"
 
 @implementation UIImage (extension)
 

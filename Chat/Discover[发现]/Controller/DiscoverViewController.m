@@ -15,11 +15,9 @@
 
 @interface DiscoverViewController ()
 
-
 @end
 
 @implementation DiscoverViewController
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -70,8 +68,7 @@
 }
 
 ///设置分割线的偏移量将15像素的横线全部显示出来
-- (void)viewDidLayoutSubviews
-{
+- (void)viewDidLayoutSubviews{
     if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
         [self.tableView setSeparatorInset:UIEdgeInsetsMake(0,0,0,0)];
     }
@@ -80,8 +77,7 @@
     }
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
         [cell setSeparatorInset:UIEdgeInsetsZero];
     }

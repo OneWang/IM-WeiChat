@@ -31,10 +31,9 @@
 
 @end
 
-static CGFloat textFieldH = 40;
+static const CGFloat textFieldH = 40;
 
 @implementation MomentsController
-
 {
     RefreshFooter *_refreshFooter;
     RefreshHeader *_refreshHeader;
@@ -42,16 +41,7 @@ static CGFloat textFieldH = 40;
     CGFloat _totalKeybordHeight;
 }
 
-- (NSMutableArray *)dataArray
-{
-    if (!_dataArray) {
-        _dataArray = [NSMutableArray array];
-    }
-    return _dataArray;
-}
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
     
     self.navigationController.navigationBar.translucent = NO;
@@ -92,8 +82,7 @@ static CGFloat textFieldH = 40;
     self.tableView.tableHeaderView = headerView;
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
     if (!_refreshHeader.superview) {
@@ -117,13 +106,12 @@ static CGFloat textFieldH = 40;
     }
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
     [_textField resignFirstResponder];
 }
 
-- (void)dealloc
-{
+- (void)dealloc{
 //    [_refreshHeader removeFromSuperview];
 //    [_refreshFooter removeFromSuperview];
     
@@ -131,8 +119,7 @@ static CGFloat textFieldH = 40;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (NSArray *)creatModelsWithCount:(NSInteger)count
-{
+- (NSArray *)creatModelsWithCount:(NSInteger)count{
     NSArray *iconImageNamesArray = @[@"icon0.jpg",
                                      @"icon1.jpg",
                                      @"icon2.jpg",
@@ -189,7 +176,6 @@ static CGFloat textFieldH = 40;
         model.name = namesArray[nameRandomIndex];
         model.msgContent = textArray[contentRandomIndex];
         
-        
         // 模拟“随机图片”
         int random = arc4random_uniform(6);
         
@@ -235,8 +221,7 @@ static CGFloat textFieldH = 40;
     return [resArr copy];
 }
 
-- (void)setupTextField
-{
+- (void)setupTextField{
     _textField = [UITextField new];
     _textField.returnKeyType = UIReturnKeyDone;
     _textField.delegate = self;
@@ -273,10 +258,10 @@ static CGFloat textFieldH = 40;
     [_textField resignFirstResponder];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.dataArray.count;
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MomentCell *cell = [MomentCell cellWithTableView:tableView];
     cell.indexPath = indexPath;
@@ -308,7 +293,6 @@ static CGFloat textFieldH = 40;
     }
     
     ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
-    
     [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
     
     ///////////////////////////////////////////////////////////////////////
@@ -317,15 +301,13 @@ static CGFloat textFieldH = 40;
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     // >>>>>>>>>>>>>>>>>>>>> * cell自适应 * >>>>>>>>>>>>>>>>>>>>>>>>
     id model = self.dataArray[indexPath.row];
     return [self.tableView cellHeightForIndexPath:indexPath model:model keyPath:@"moment" cellClass:[MomentCell class] contentViewWidth:[self cellContentViewWith]];
 }
 
-- (void)adjustTableViewToFitKeyboardWithRect:(CGRect)rect
-{
+- (void)adjustTableViewToFitKeyboardWithRect:(CGRect)rect{
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     CGFloat delta = CGRectGetMaxY(rect) - (window.bounds.size.height - _totalKeybordHeight);
     
@@ -338,14 +320,12 @@ static CGFloat textFieldH = 40;
     [self.tableView setContentOffset:offset animated:YES];
 }
 
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     [_textField resignFirstResponder];
     _textField.placeholder = nil;
 }
 
-- (CGFloat)cellContentViewWith
-{
+- (CGFloat)cellContentViewWith{
     CGFloat width = [UIScreen mainScreen].bounds.size.width;
     
     // 适配ios7横屏
@@ -356,18 +336,14 @@ static CGFloat textFieldH = 40;
 }
 
 #pragma mark - MomentModelDelegate
-
-- (void)didClickcCommentButtonInCell:(UITableViewCell *)cell
-{
+- (void)didClickcCommentButtonInCell:(UITableViewCell *)cell{
     [_textField becomeFirstResponder];
     _currentEditingIndexthPath = [self.tableView indexPathForCell:cell];
     
     [self adjustTableViewToFitKeyboard];
-    
 }
 
-- (void)didClickLikeButtonInCell:(UITableViewCell *)cell
-{
+- (void)didClickLikeButtonInCell:(UITableViewCell *)cell{
     NSIndexPath *index = [self.tableView indexPathForCell:cell];
     MomentModel *model = self.dataArray[index.row];
     NSMutableArray *temp = [NSMutableArray arrayWithArray:model.likeArray];
@@ -395,8 +371,8 @@ static CGFloat textFieldH = 40;
         [self.tableView reloadRowsAtIndexPaths:@[index] withRowAnimation:UITableViewRowAnimationNone];
     });
 }
-- (void)adjustTableViewToFitKeyboard
-{
+
+- (void)adjustTableViewToFitKeyboard{
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:_currentEditingIndexthPath];
     CGRect rect = [cell.superview convertRect:cell.frame toView:window];
@@ -404,9 +380,7 @@ static CGFloat textFieldH = 40;
 }
 
 #pragma mark - UITextFieldDelegate
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
     if (textField.text.length) {
         [_textField resignFirstResponder];
         
@@ -439,15 +413,9 @@ static CGFloat textFieldH = 40;
     return NO;
 }
 
-
-
-- (void)keyboardNotification:(NSNotification *)notification
-{
+- (void)keyboardNotification:(NSNotification *)notification{
     NSDictionary *dict = notification.userInfo;
     CGRect rect = [dict[@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
-    
-    
-    
     CGRect textFieldRect = CGRectMake(0, rect.origin.y - textFieldH, rect.size.width, textFieldH);
     if (rect.origin.y == [UIScreen mainScreen].bounds.size.height) {
         textFieldRect = rect;
@@ -462,6 +430,14 @@ static CGFloat textFieldH = 40;
         _totalKeybordHeight = h;
         [self adjustTableViewToFitKeyboard];
     }
+}
+
+#pragma mark - setter and getter
+- (NSMutableArray *)dataArray{
+    if (!_dataArray) {
+        _dataArray = [NSMutableArray array];
+    }
+    return _dataArray;
 }
 
 @end

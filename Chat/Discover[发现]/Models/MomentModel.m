@@ -21,8 +21,7 @@ extern CGFloat maxContentLabelHeight;
 
 @synthesize msgContent = _msgContent;
 
-- (NSString *)msgContent
-{
+- (NSString *)msgContent{
     CGFloat contentW = [UIScreen mainScreen].bounds.size.width - 70;
     if (contentW != _lastContentWidth) {
         _lastContentWidth = contentW;
@@ -36,8 +35,7 @@ extern CGFloat maxContentLabelHeight;
     return _msgContent;
 }
 
-- (void)setIsOpening:(BOOL)isOpening
-{
+- (void)setIsOpening:(BOOL)isOpening{
     if (!_shouldShowMoreButton) {
         _isOpening = NO;
     } else {

@@ -21,8 +21,20 @@
 
 #import "EMCDDeviceManager.h"
 #import "PhotoContainerView.h"
+#import <MobileCoreServices/MobileCoreServices.h>
 
-@interface ChatViewController ()<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,EMChatManagerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,EmotionViewdelegate,ChatCellDelegate,ChatShareDelegate>
+#define MAX_VIDEO_DURATION_FOR_CHAT 15;
+
+@interface ChatViewController ()<UITableViewDataSource,
+                                 UITableViewDelegate,
+                                 UITextViewDelegate,
+                                 EMChatManagerDelegate,
+                                 UIImagePickerControllerDelegate,
+                                 UINavigationControllerDelegate,
+                                 EmotionViewdelegate,
+                                 ChatCellDelegate,
+                                 ChatShareDelegate>
+
 @property (strong, nonatomic) NSString * name;
 /** emoji 键盘 */
 @property (strong, nonatomic) EmojiView *emoji;
@@ -62,6 +74,8 @@
 
 /// 图片浏览器
 @property (strong, nonatomic)  PhotoContainerView *photoContainer;
+/** 图片控制器 */
+@property (nonatomic, strong) UIImagePickerController *imagePicker;
 @end
 
 @implementation ChatViewController
@@ -332,6 +346,11 @@
         NSLog(@"chatCellClickHeaderImageView头像被点击!!!%@",@"获取当前登录的账户名称");
     }
 }
+
+- (void)chatCellShowImageWithMessage:(EMMessage *)msg {
+    
+}
+
 #pragma mark UITextViewDelegate
 - (void)textViewDidChange:(UITextView *)textView
 {
@@ -380,11 +399,11 @@
     
     //消息 = 消息头 + 消息体
     //每一种消息类型对应不同的消息体
-//    EMTextMessageBody
-//    EMVoiceMessageBody
-//    EMLocationMessageBody
-//    EMImageMessageBody
-//    EMVideoMessageBody
+    //    EMTextMessageBody
+    //    EMVoiceMessageBody
+    //    EMLocationMessageBody
+    //    EMImageMessageBody
+    //    EMVideoMessageBody
     
     NSLog(@"要发送给谁的:%@",self.friendName);
     
@@ -397,9 +416,9 @@
     [self sendMesssage:textBody];
     
     //消息类型
-//    @constant eMessageTypeChat            单聊消息
-//    @constant eMessageTypeGroupChat       群聊消息
-//    @constant eMessageTypeChatRoom        聊天室消息
+    //    @constant eMessageTypeChat            单聊消息
+    //    @constant eMessageTypeGroupChat       群聊消息
+    //    @constant eMessageTypeChatRoom        聊天室消息
     
 }
 
@@ -427,7 +446,7 @@
     //把消息添加到数据源数组,然后刷新表格
     [self addDataArrayWithMessage:msgObj];
     [self.tableView reloadData];
-
+    
     //把消息滚动显示在最上面
     [self scrollToBottom];
 }
@@ -448,7 +467,7 @@
     
     //1.构建一个语音的消息体
     EMChatVoice *chatVoice = [[EMChatVoice alloc] initWithFile:recordPath displayName:@"[语音]"];
-//    chatVoice.duration = duration;
+    //    chatVoice.duration = duration;
     
     EMVoiceMessageBody *voiceBody = [[EMVoiceMessageBody alloc] initWithChatObject:chatVoice];
     voiceBody.duration = duration;
@@ -530,12 +549,12 @@
 #pragma mark 显示图片选择器
 - (IBAction)showImagePicker:(id)sender {
     //显示图片选择的控制器
-//    UIImagePickerController *imgPicker = [[UIImagePickerController alloc] init];
+    //    UIImagePickerController *imgPicker = [[UIImagePickerController alloc] init];
     
     //设置源
-//    imgPicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-//    imgPicker.delegate = self;
-//    [self presentViewController:imgPicker animated:YES completion:NULL];
+    //    imgPicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    //    imgPicker.delegate = self;
+    //    [self presentViewController:imgPicker animated:YES completion:NULL];
     NSLog(@"添加更多功能按钮");
     [self addMoreFunctionView];
 }
@@ -551,7 +570,7 @@
         emotionBtn.selected = YES;
         [UIView animateWithDuration:emotionTipTime animations:^{
             self.emoji.frame = emotionUpFrame;
-//            self.toolBarView.frame = CGRectMake(0, screenH - self.inputToolBarConstraint.constant - self.emoji.height, screenW, self.inputToolBarConstraint.constant);
+            //            self.toolBarView.frame = CGRectMake(0, screenH - self.inputToolBarConstraint.constant - self.emoji.height, screenW, self.inputToolBarConstraint.constant);
             self.tableView.height = screenH - self.emoji.height - self.inputToolBarConstraint.constant - 64;
             if (self.tableView.contentSize.height > self.tableView.height) {
                 [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentSize.height - self.tableView.bounds.size.height + 3) animated:NO];
@@ -599,6 +618,58 @@
     
     //设置消息为已读
     [self.conversation markMessageWithId:message.messageId asRead:YES];
+}
+
+- (void)emotionView_sBtnDidClick:(UIButton *)btn {
+    
+}
+
+- (void)gifBtnClick:(UIButton *)btn {
+    
+}
+
+- (void)encodeWithCoder:(nonnull NSCoder *)aCoder {
+    
+}
+
+- (void)traitCollectionDidChange:(nullable UITraitCollection *)previousTraitCollection {
+    
+}
+
+- (void)preferredContentSizeDidChangeForChildContentContainer:(nonnull id<UIContentContainer>)container {
+    
+}
+
+- (CGSize)sizeForChildContentContainer:(nonnull id<UIContentContainer>)container withParentContainerSize:(CGSize)parentSize {
+    return CGSizeZero;
+}
+
+- (void)systemLayoutFittingSizeDidChangeForChildContentContainer:(nonnull id<UIContentContainer>)container {
+    
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(nonnull id<UIViewControllerTransitionCoordinator>)coordinator {
+    
+}
+
+- (void)willTransitionToTraitCollection:(nonnull UITraitCollection *)newCollection withTransitionCoordinator:(nonnull id<UIViewControllerTransitionCoordinator>)coordinator {
+    
+}
+
+- (void)didUpdateFocusInContext:(nonnull UIFocusUpdateContext *)context withAnimationCoordinator:(nonnull UIFocusAnimationCoordinator *)coordinator {
+    
+}
+
+- (void)setNeedsFocusUpdate {
+    
+}
+
+- (BOOL)shouldUpdateFocusInContext:(nonnull UIFocusUpdateContext *)context {
+    return YES;
+}
+
+- (void)updateFocusIfNeeded {
+    
 }
 
 @end

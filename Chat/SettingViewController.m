@@ -24,12 +24,10 @@
     NSString * title = [NSString stringWithFormat:@"Logout(%@)",loginUsername];
     //设置退出按钮的文字
     [self.logoutBtn setTitle:title forState:UIControlStateNormal];
-    
 }
 
 
 - (IBAction)logoutAction:(id)sender {
-    
     //isUnbind 是否推送
     [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES completion:^(NSDictionary *info, EMError *error) {
         if (error) {

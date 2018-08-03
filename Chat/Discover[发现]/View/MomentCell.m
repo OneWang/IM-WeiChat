@@ -16,8 +16,7 @@
 
 const CGFloat contentLabelFontSize = 15;
 CGFloat maxContentLabelHeight = 0; // 根据具体font而定
-NSString *const kCellLikeButtonClickedNotification = @"CellLikeButtonClickedNotification";
-
+static NSString *const kCellLikeButtonClickedNotification = @"CellLikeButtonClickedNotification";
 
 @interface MomentCell ()
 
@@ -38,7 +37,7 @@ NSString *const kCellLikeButtonClickedNotification = @"CellLikeButtonClickedNoti
 /// 评论的 view
 @property (weak, nonatomic) CommentView *commentView;
 /// 更多操作
-@property (weak, nonatomic)  LikeMenu *likeMenu;
+@property (weak, nonatomic) LikeMenu *likeMenu;
 
 @end
 
@@ -53,8 +52,7 @@ NSString *const kCellLikeButtonClickedNotification = @"CellLikeButtonClickedNoti
     return cell;
 }
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         //设置
         [self setup];
@@ -63,7 +61,6 @@ NSString *const kCellLikeButtonClickedNotification = @"CellLikeButtonClickedNoti
 }
 
 - (void)setup{
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveOperationButtonClickedNotification:) name:kCellLikeButtonClickedNotification object:nil];
     
     UIButton *icon = [[UIButton alloc] init];
@@ -133,13 +130,11 @@ NSString *const kCellLikeButtonClickedNotification = @"CellLikeButtonClickedNoti
     self.commentBtn = comment;
 //    [self.contentView addSubview:self.commentBtn];
     
-    
     NSArray *views = @[self.iconBtn,self.nickLabel,self.descLabel,self.pictures,self.moreBtn,self.commentBtn,self.likeMenu,self.commentView,self.timeLabel];
     
     [self.contentView sd_addSubviews:views];
     
     CGFloat margin = 8;
-    
     self.iconBtn.sd_layout.leftSpaceToView(self.contentView,margin).topSpaceToView(self.contentView,margin + 8).widthIs(40).heightIs(40);
     
 //    [self.iconBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -185,12 +180,11 @@ NSString *const kCellLikeButtonClickedNotification = @"CellLikeButtonClickedNoti
 //        make.top.equalTo(self.pictures.mas_bottom).offset(margin);
 //    }];
     
-    self.commentBtn.sd_layout.rightSpaceToView(self.contentView,margin).centerYEqualToView(self.timeLabel).heightIs(25).widthIs(25);
+ self.commentBtn.sd_layout.rightSpaceToView(self.contentView,margin).centerYEqualToView(self.timeLabel).heightIs(25).widthIs(25);
     
     self.commentView.sd_layout.leftEqualToView(self.descLabel).rightSpaceToView(self.contentView, margin).topSpaceToView(self.timeLabel, margin);
     
     self.likeMenu.sd_layout.rightSpaceToView(self.commentBtn, 0).heightIs(36).centerYEqualToView(self.commentBtn).widthIs(0);
-
 }
 
 - (void)moreButtonClicked{
@@ -209,16 +203,15 @@ NSString *const kCellLikeButtonClickedNotification = @"CellLikeButtonClickedNoti
     [self postOperationButtonClickedNotification];
     self.likeMenu.show = !self.likeMenu.isShowing;
 }
-- (void)receiveOperationButtonClickedNotification:(NSNotification *)notification
-{
+
+- (void)receiveOperationButtonClickedNotification:(NSNotification *)notification{
     UIButton *btn = [notification object];
-    
     if (btn != self.commentBtn && self.likeMenu.isShowing) {
         self.likeMenu.show = NO;
     }
 }
-- (void)setMoment:(MomentModel *)moment
-{
+
+- (void)setMoment:(MomentModel *)moment{
     _moment = moment;
     
     [self.iconBtn setImage:[UIImage imageNamed:moment.iconName] forState:UIControlStateNormal];
@@ -267,7 +260,6 @@ NSString *const kCellLikeButtonClickedNotification = @"CellLikeButtonClickedNoti
     self.pictures.sd_layout.topSpaceToView(self.moreBtn, picContainerTopMargin);
     
     UIView *bottomView;
-    
     if (!moment.commentArray.count && !moment.likeArray.count) {
         bottomView = self.timeLabel;
     } else {
@@ -282,16 +274,14 @@ NSString *const kCellLikeButtonClickedNotification = @"CellLikeButtonClickedNoti
 
 }
 
-- (void)setFrame:(CGRect)frame
-{
+- (void)setFrame:(CGRect)frame{
     [super setFrame:frame];
     if (self.likeMenu.isShowing) {
         self.likeMenu.show = NO;
     }
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-{
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [super touchesBegan:touches withEvent:event];
     [self postOperationButtonClickedNotification];
     if (self.likeMenu.isShowing) {
@@ -299,8 +289,7 @@ NSString *const kCellLikeButtonClickedNotification = @"CellLikeButtonClickedNoti
     }
 }
 
-- (void)postOperationButtonClickedNotification
-{
+- (void)postOperationButtonClickedNotification{
     [[NSNotificationCenter defaultCenter] postNotificationName:kCellLikeButtonClickedNotification object:self.commentBtn];
 }
 

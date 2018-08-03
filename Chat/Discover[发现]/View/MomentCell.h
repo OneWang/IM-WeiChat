@@ -26,7 +26,6 @@
 @property (nonatomic, copy) void (^moreButtonClickedBlock)(NSIndexPath *indexPath);
 ///评论按钮
 @property (nonatomic, copy) void (^didClickCommentLabelBlock)(NSString *commentId, CGRect rectInWindow, NSIndexPath *indexPath);
-
 /// 头像被点击
 @property (copy, nonatomic) void(^clickIconBtnBlock)(NSIndexPath *indexPath);
 

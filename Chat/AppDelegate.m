@@ -40,13 +40,11 @@
     if ([[EaseMob sharedInstance].chatManager isAutoLoginEnabled]) {
         self.window.rootViewController = [UIStoryboard storyboardWithName:@"Main" bundle:nil].instantiateInitialViewController;
     }
-    
     return YES;
 }
 
 #pragma mark 自动登录的回调
-- (void)didAutoLoginWithInfo:(NSDictionary *)loginInfo error:(EMError *)error
-{
+- (void)didAutoLoginWithInfo:(NSDictionary *)loginInfo error:(EMError *)error{
     if (!error) {
         [MBProgressHUD showSuccess:@"自动登录成功"];
 //        [loginInfo writeToFile:[NSString stringWithFormat:@"%@",NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject] atomically:YES];
@@ -56,7 +54,6 @@
         NSLog(@"自动登录失败 %@",error);
     }
 }
-
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -81,8 +78,7 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-- (void)dealloc
-{
+- (void)dealloc{
     [[EaseMob sharedInstance].chatManager removeDelegate:self];
 }
 

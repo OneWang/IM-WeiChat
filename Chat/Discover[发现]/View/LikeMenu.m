@@ -23,16 +23,14 @@
 
 @implementation LikeMenu
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         [self setup];
     }
     return self;
 }
 
-- (void)setup
-{
+- (void)setup{
     self.clipsToBounds = YES;
     self.layer.cornerRadius = 5;
     self.backgroundColor = Color(69, 74, 76, 1);
@@ -42,7 +40,6 @@
     
     UIView *centerLine = [UIView new];
     centerLine.backgroundColor = [UIColor grayColor];
-    
     
     [self sd_addSubviews:@[self.likeBtn, self.commentBtn, centerLine]];
     
@@ -65,11 +62,9 @@
     .topEqualToView(self.likeBtn)
     .bottomEqualToView(self.likeBtn)
     .widthRatioToView(self.likeBtn, 1);
-    
 }
 
-- (UIButton *)creatButtonWithTitle:(NSString *)title image:(UIImage *)image selImage:(UIImage *)selImage target:(id)target selector:(SEL)sel
-{
+- (UIButton *)creatButtonWithTitle:(NSString *)title image:(UIImage *)image selImage:(UIImage *)selImage target:(id)target selector:(SEL)sel{
     UIButton *btn = [[UIButton alloc] init];
     [btn setTitle:title forState:UIControlStateNormal];
     [btn setImage:image forState:UIControlStateNormal];
@@ -80,26 +75,22 @@
     return btn;
 }
 
-- (void)likeButtonClicked
-{
+- (void)likeButtonClicked{
     if (self.likeButtonClickedOperation) {
         self.likeButtonClickedOperation();
     }
     self.show = NO;
 }
 
-- (void)commentButtonClicked
-{
+- (void)commentButtonClicked{
     if (self.commentButtonClickedOperation) {
         self.commentButtonClickedOperation();
     }
     self.show = NO;
 }
 
-- (void)setShow:(BOOL)show
-{
+- (void)setShow:(BOOL)show{
     _show = show;
-    
     [UIView animateWithDuration:0.2 animations:^{
         if (!show) {
             [self clearAutoWidthSettings];
@@ -112,7 +103,5 @@
         [self updateLayoutWithCellContentView:self.superview];
     }];
 }
-
-
 
 @end
